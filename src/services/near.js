@@ -1,7 +1,7 @@
-import { keyStores, Near, WalletConnection, utils } from "near-api-js";
+import { keyStores, Near, WalletConnection } from "near-api-js";
 import BN from "bn.js";
 
-export const CONTRACT_ID = "dev-1631282203902-90798358713232";
+export const CONTRACT_ID = "dev-1632981095270-35568974700849";
 const gas = new BN("70000000000000");
 
 export const near = new Near({
