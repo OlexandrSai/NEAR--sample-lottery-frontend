@@ -67,6 +67,10 @@ export const getExplainLottery = () => {
   return wallet.account().viewFunction(CONTRACT_ID, "explain_lottery");
 };
 
+  // -----------------------------------------------------------------------------------
+  // change functions
+  // -----------------------------------------------------------------------------------
+
 //function to play lottery
 export const play = () => {
       let response
@@ -92,4 +96,29 @@ export const play = () => {
       console.log(response)
 }
 
+//function to configure Lottery
+export const configureLottery = ({chance}) => {
+  return wallet.account().functionCall({
+      contractId: CONTRACT_ID,
+      methodName: "configure_lottery",
+      args: {chance}
+  })
+}
+
+//function to configure Fee
+export const configureFee = ({strategy}) => {
+  return wallet.account().functionCall({
+      contractId: CONTRACT_ID,
+      methodName: "configure_fee",
+      args: {strategy}
+  })
+}
+
+//function to reset  lottery
+export const reset = () => {
+  return wallet.account().functionCall({
+      contractId: CONTRACT_ID,
+      methodName: "reset"
+  })
+}
 
