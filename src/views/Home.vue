@@ -22,9 +22,6 @@
 
 <Footer/>
 
- <loading v-model:active="loading"
-                 :can-cancel="true"
-                 :is-full-page="fullPage"/>
 </template>
 
 <script>
@@ -37,8 +34,6 @@ import Navigation from '@/components/Navigation.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import Options from '@/components/Options.vue'
 import Footer from '@/components/Footer.vue'
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 
 //const FeeStrategies = ['Free','Constant','Linear','Exponential']
@@ -73,8 +68,7 @@ export default {
     Navigation,
     PageTitle,
     Options,
-    Footer,
-    Loading
+    Footer
   },
 }
 </script>
