@@ -15,8 +15,10 @@
              :fee='fee' 
              :pot='pot'
              :fee_strategy='feeStrategy'
-             v-on:play="play"/>
-  <Options :isOwner='isOwner'/>
+             :has_played='hasPlayed'
+             :play="play"
+             :reset="reset"/>
+  <Options :owner='owner' :accountId='accountId'/>
 </header>
 
 <Footer/>
@@ -33,10 +35,8 @@ import Navigation from '@/components/Navigation.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import Options from '@/components/Options.vue'
 import Footer from '@/components/Footer.vue'
+import {wallet } from '@/services/near'
 import { useLottery } from "@/composables/near"
-
-//const FeeStrategies = ['Free','Constant','Linear','Exponential']
-
 
 export default {
   name: 'App',
@@ -52,20 +52,23 @@ export default {
     Footer
   },
   setup(){
-    //hasPlayed
-    const  { owner, winner, pot, fee, feeStrategy, lastPlayed, active, feesExplanation, lotteryExplanation}  = useLottery();
+    const accountId = wallet.getAccountId();
+    const  { owner, winner, pot, fee, feeStrategy,hasPlayed, lastPlayed, active, feesExplanation, lotteryExplanation,  play,  reset}  = useLottery();
 
     return  {
-      owner,
+        accountId,
+        owner,
         winner,
         pot,
         fee,
         feeStrategy,
-        //hasPlayed,
+        hasPlayed,
         lastPlayed,
         active,
         feesExplanation,
-        lotteryExplanation
+        lotteryExplanation,
+        play,
+        reset
     }
   }
 }

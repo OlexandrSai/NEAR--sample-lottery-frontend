@@ -1,4 +1,4 @@
-import { keyStores, Near, WalletConnection } from "near-api-js";
+import { keyStores, Near, WalletConnection,  utils } from "near-api-js";
 import BN from "bn.js";
 
 export const CONTRACT_ID = "dev-1632981095270-35568974700849";
@@ -43,8 +43,8 @@ export const getFeeStrategy = () => {
 };
 
 //function to get bool value  has  lottery played or  no
-export const getHasPlayed = () => {
-  return wallet.account().viewFunction(CONTRACT_ID, "get_has_played");
+export const getHasPlayed = (accountId) => {
+  return wallet.account().viewFunction(CONTRACT_ID, "get_has_played", {player: accountId});
 };
 
 //function to get id of last player account 
@@ -72,23 +72,23 @@ export const getExplainLottery = () => {
   // -----------------------------------------------------------------------------------
 
 //function to play lottery
-export const play = () => {
+export const play = (fee,hasPlayed) => {
       let response
-      let feeNumber = getFee().match(/(\d+)/)[0] //* 1000000000000000000000000
-      feeNumber = feeNumber*1000000000000000
+      let feeNumber = fee.match(/(\d+)/)[0] //* 1000000000000000000000000
       console.log(feeNumber)
-      if (this.getHasPlayed()) {
+      if (hasPlayed) {
           //+fee
+          console.log(utils.format.parseNearAmount(feeNumber))
         response = wallet.account().functionCall({
         contractId: CONTRACT_ID,
-        methodName: "say",
+        methodName: "play",
         gas,
-
+        attachedDeposit:utils.format.parseNearAmount(feeNumber)
         }) 
       }else{
         response = wallet.account().functionCall({
             contractId: CONTRACT_ID,
-            methodName: "say",
+            methodName: "play",
             gas,
     
             }) 
@@ -116,9 +116,11 @@ export const configureFee = ({strategy}) => {
 
 //function to reset  lottery
 export const reset = () => {
-  return wallet.account().functionCall({
+  let  response =  wallet.account().functionCall({
       contractId: CONTRACT_ID,
-      methodName: "reset"
+      methodName: "reset",
+      args: { accountId:CONTRACT_ID }
   })
+  console.log(response)
 }
 
