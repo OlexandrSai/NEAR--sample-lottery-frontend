@@ -5,12 +5,14 @@ import {
     getPot,
     getFee,
     getFeeStrategy,
-    getHasPlayed,
+    //getHasPlayed,
     getLastPlayed,
     getActive,
     getExplainFees,
     getExplainLottery
   } from "../services/near";
+
+  const FeeStrategies = ['Free','Constant','Linear','Exponential']
 
   export const useLottery = () => {
       const  owner = ref('')
@@ -18,11 +20,12 @@ import {
       const  pot = ref('')
       const  fee = ref('')
       const  feeStrategy = ref('')
-      const  hasPlayed = ref(null)
+      //const  hasPlayed = ref(null)
       const  lastPlayed = ref(null)
       const  active = ref(null)
       const  feesExplanation =  ref('')
       const  lotteryExplanation  = ref('')
+      const err = ref(null);
 
       onMounted(async () => {
           try {
@@ -30,8 +33,8 @@ import {
               winner.value = await getWinner()
               pot.value = await getPot()
               fee.value = await getFee()
-              feeStrategy.value = await getFeeStrategy()
-              hasPlayed.value = await getHasPlayed()
+              feeStrategy.value = FeeStrategies[await getFeeStrategy()]
+              //hasPlayed.value = await getHasPlayed()
               lastPlayed.value = await getLastPlayed()
               active.value = await getActive()
               feesExplanation.value = await getExplainFees()
@@ -39,17 +42,17 @@ import {
           }
           catch (e) {
               err.value = e;
-              console.log(e.value);
+              console.log('error');
           }
       })
 
-      const handleSendMessage = async ({message,anonymous,attachedDeposit}) => {
-          sendMessage({message,anonymous,attachedDeposit});
-      };
+    //   const handleSendMessage = async ({message,anonymous,attachedDeposit}) => {
+    //       sendMessage({message,anonymous,attachedDeposit});
+    //   };
 
-      const handleTransfer = async  () => {
-          transfer();
-      }
+    //   const handleTransfer = async  () => {
+    //       transfer();
+    //   }
 
       return {
         owner,
@@ -57,12 +60,12 @@ import {
         pot,
         fee,
         feeStrategy,
-        hasPlayed,
+        //hasPlayed,
         lastPlayed,
         active,
         feesExplanation,
         lotteryExplanation,
-        sendMessage:handleSendMessage,
-        transferFunds:handleTransfer
+        // sendMessage:handleSendMessage,
+        // transferFunds:handleTransfer
       };
   };

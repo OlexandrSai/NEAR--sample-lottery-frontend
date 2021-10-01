@@ -9,13 +9,12 @@
 <!-- Header-->
 <header>
   <Navigation />
-  <PageTitle :chance='chance'
+  <PageTitle :chance='lotteryExplanation'
              :owner='owner'
              :winner='winner' 
              :fee='fee' 
              :pot='pot'
-             :fee_strategy='fee_strategy'
-             :has_played='has_played'
+             :fee_strategy='feeStrategy'
              v-on:play="play"/>
   <Options :isOwner='isOwner'/>
 </header>
@@ -34,30 +33,12 @@ import Navigation from '@/components/Navigation.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import Options from '@/components/Options.vue'
 import Footer from '@/components/Footer.vue'
-
+import { useLottery } from "@/composables/near"
 
 //const FeeStrategies = ['Free','Constant','Linear','Exponential']
 
 
 export default {
-  data () {
-    return {
-      loading:false,
-      fullpage:false,
-      isSignedIn: false,
-      accountName: '',
-      accountBalance: '',
-      chance: '20%',
-      fee:'0',
-      pot: '',
-      last_played : '',
-      has_played : false,
-      winner : '',
-      owner: 'NEAR',
-      isOwner: false,
-      fee_strategy: 'Linear'
-    }
-  },
   name: 'App',
   components: {
     DecorationDots,
@@ -70,5 +51,22 @@ export default {
     Options,
     Footer
   },
+  setup(){
+    //hasPlayed
+    const  { owner, winner, pot, fee, feeStrategy, lastPlayed, active, feesExplanation, lotteryExplanation}  = useLottery();
+
+    return  {
+      owner,
+        winner,
+        pot,
+        fee,
+        feeStrategy,
+        //hasPlayed,
+        lastPlayed,
+        active,
+        feesExplanation,
+        lotteryExplanation
+    }
+  }
 }
 </script>

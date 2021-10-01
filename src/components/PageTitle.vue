@@ -30,13 +30,13 @@
                         <p class="ml-3">Chance of victory</p>
                         <p class="ml-auto">{{chance==''?chance:chance.match(/(\d+)/)[0]+'%'}}</p>
                     </div>
-                    <div class="flex w-full mx-3 my-3 pb-2 py-2 border-b font-medium">
+                    <!-- <div class="flex w-full mx-3 my-3 pb-2 py-2 border-b font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
                         <p class="ml-3">Date</p>
                         <p class="ml-auto">13/07/21 11:00 Am</p>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- Onew row -->
                 <!-- Onew row -->
