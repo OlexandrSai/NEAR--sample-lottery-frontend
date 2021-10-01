@@ -8,8 +8,7 @@
 
 <!-- Header-->
 <header>
-  <Navigation :isSignedIn='isSignedIn' :accountName='accountName' 
-   v-on:signIn='signIn' v-on:signOut='signOut'/>
+  <Navigation />
   <PageTitle :chance='chance'
              :owner='owner'
              :winner='winner' 
