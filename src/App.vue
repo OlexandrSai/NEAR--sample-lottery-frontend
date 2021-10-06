@@ -21,11 +21,6 @@
 </header>
 
 <Footer/>
-
- <loading v-model:active="loading"
-                 :can-cancel="true"
-                 :is-full-page="fullPage"/>
-
 </template>
 
 <script>
@@ -39,8 +34,6 @@ import PageTitle from '@/components/PageTitle.vue'
 import Options from '@/components/Options.vue'
 import Footer from '@/components/Footer.vue'
 import * as nearAPI from "near-api-js"
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 const { connect, keyStores, WalletConnection } = nearAPI
 
@@ -88,8 +81,7 @@ export default {
     Navigation,
     PageTitle,
     Options,
-    Footer,
-    Loading
+    Footer
   },
   async mounted () {
     near = await connect(config);
