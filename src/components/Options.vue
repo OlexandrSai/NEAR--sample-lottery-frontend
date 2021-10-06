@@ -1,5 +1,5 @@
 <template>
-   <div v-if="isOwner" class="w-full mt-10 px-5 md:px-9">
+   <div v-if="owner==accountId" class="w-full mt-10 px-5 md:px-9">
             <div class="w-full xl:w-1/2 md:mx-auto bg-white shadow-2xl rounded-md px-5 py-6">
                 <p class="flex justify-between text-sm font-medium text-gray-400">
                     Options (just for admin)
@@ -56,14 +56,14 @@
 <script>
 export default {
     props: {
-        isOwner: {
-            typeof: Boolean,
+        owner: {
+            typeof: String,
+            required:true
+        },
+        accountId: {
+            typeof: String,
             required:true
         }
     }
 }
 </script>
-
-<style>
-
-</style>

@@ -7,22 +7,16 @@
                 </svg>
                 Smart lottery
             </a>
-            <!-- Wrapper for nav btn -->
-             <div  v-if="!this.$props.isSignedIn" class="ml-auto hidden md:flex">
-                <button  @click="$emit('signIn')" class="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
-                    Login
-                </button>
-             </div>
-            <div v-else class="ml-auto hidden md:flex">
+            <div v-if="accountId" class="ml-auto hidden md:flex">
                 <!-- Account btn -->
                 <a href="#" class="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
-                    {{accountName}}
+                    {{accountId}}
                 </a>
                 <!-- Balance -->
-                <a href="#" class="block flex bg-yellow-400  font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
+                <!-- <a href="#" class="block flex bg-yellow-400  font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
@@ -30,13 +24,18 @@
                     <span class="mx-1 my-0.5 leading-7 text-5xl font-bold sm:text-sm ">
                         Ⓝ
                     </span>    
-                </a>
+                </a> -->
                 <!-- Logout btn -->
-                <button  @click="$emit('signOut')" class="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
+                <button  @click="signOut" class="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                       </svg>
                     Logout
+                </button>
+            </div>
+            <div v-else  class="ml-auto hidden md:flex">
+                 <button  @click="signIn" class="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
+                    Login
                 </button>
             </div>
             <!-- Burger menu -->
@@ -49,29 +48,18 @@
 </template>
 
 <script>
+import {wallet, CONTRACT_ID } from '@/services/near'
 export default {
-    props: {
-        isSignedIn: {
-            typeof:Boolean,
-            required:true
-        },
-        accountName: {
-            typeof:String,
-            required:false
-        },
-        balance: {
-            typeof:Number,
-            required: false
-        }
-    },
-    computed: {
-        getBalance () {
-            return (this.balance/1000000000000000000000000).toFixed(5)
+    setup() {
+        const accountId = wallet.getAccountId();
+        return {
+            accountId,
+            signIn: () => wallet.requestSignIn(CONTRACT_ID),
+            signOut: () => {
+                wallet.signOut();
+                window.location.reload();
+            }
         }
     }
 }
 </script>
-
-<style>
-
-</style>
