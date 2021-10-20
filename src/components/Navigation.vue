@@ -49,15 +49,17 @@
 
 <script>
 import {wallet, CONTRACT_ID } from '@/services/near'
+import {ref} from "vue"
 export default {
     setup() {
-        const accountId = wallet.getAccountId();
+        const accountId = ref(wallet.getAccountId())
         return {
             accountId,
             signIn: () => wallet.requestSignIn(CONTRACT_ID),
             signOut: () => {
                 wallet.signOut();
-                window.location.reload();
+                localStorage.removeItem(`near-api-js:keystore:${accountId.value}:testnet`);
+                accountId.value = wallet.getAccountId();
             }
         }
     }
