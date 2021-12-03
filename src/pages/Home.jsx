@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { wallet } from '../services/near';
 import { Footer } from '../components/Footer';
 import { Options } from '../components/Options';
+import { useLottery } from '../hooks/useLottery';
 import { PageTitle } from '../components/PageTitle';
-import { wallet } from '../components/services/near';
 import { Navigation } from '../components/Navigation';
-import { useLottery } from '../components/hooks/useLottery';
 import { DecorationDots } from '../components/decoration/DecorationDots';
 import { DecorationLines } from '../components/decoration/DecorationLines';
 import { DecorationCircleLg } from '../components/decoration/DecorationCircleLg';
@@ -36,7 +36,7 @@ export const Home = () => {
           play={play}
           reset={reset}
         />
-        <Options owner={owner} accountId={accountId} />
+        {accountId && owner === accountId ? <Options /> : null}
       </header>
 
       <Footer />

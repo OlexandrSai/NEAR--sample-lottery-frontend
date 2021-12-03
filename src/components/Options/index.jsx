@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Options = () => {
   return (
-    <div v-if="owner==accountId" className="w-full mt-10 px-5 md:px-9">
+    <div className="w-full mt-10 px-5 md:px-9">
       <div className="w-full xl:w-1/2 md:mx-auto bg-white shadow-2xl rounded-md px-5 py-6">
         <p className="flex justify-between text-sm font-medium text-gray-400">
           Options (just for admin)

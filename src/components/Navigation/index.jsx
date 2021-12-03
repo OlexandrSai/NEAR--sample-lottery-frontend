@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONTRACT_ID, wallet } from '../services/near';
+import { CONTRACT_ID, wallet } from '../../services/near';
 
 export const Navigation = ({ accountId, setAccountId }) => {
   const signIn = () => {
