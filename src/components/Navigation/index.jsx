@@ -1,6 +1,16 @@
 import React from 'react';
+import { CONTRACT_ID, wallet } from '../services/near';
 
-export const Navigation = () => {
+export const Navigation = ({ accountId, setAccountId }) => {
+  const signIn = () => {
+    wallet.requestSignIn(CONTRACT_ID);
+  };
+
+  const signOut = () => {
+    wallet.signOut();
+    setAccountId('');
+  };
+
   return (
     <>
       <div className="w-full flex bg-white text-gray-900 px-5 md:px-9">
@@ -21,56 +31,59 @@ export const Navigation = () => {
           </svg>
           Smart lottery
         </a>
-        <div v-if="accountId" className="ml-auto hidden md:flex">
-          <a
-            href="#"
-            className="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-2 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        {accountId ? (
+          <div className="ml-auto hidden md:flex">
+            <a
+              href="#"
+              className="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
-            {'accountId'}
-          </a>
-          <button
-            click="signOut"
-            className="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-2 h-6 w-6 text-gray-900"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="mr-2 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+              {accountId}
+            </a>
+            <button
+              onClick={signOut}
+              className="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              />
-            </svg>
-            Logout
-          </button>
-        </div>
-        <div v-else className="ml-auto hidden md:flex">
-          <button
-            click="signIn"
-            className="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300"
-          >
-            Login
-          </button>
-        </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="mr-2 h-6 w-6 text-gray-900"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className="ml-auto hidden md:flex">
+            <button
+              onClick={signIn}
+              className="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300"
+            >
+              Login
+            </button>
+          </div>
+        )}
         <a href="#" className="sm:block md:hidden mt-6 ml-auto text-gray-900">
           <svg
             xmlns="http://www.w3.org/2000/svg"
