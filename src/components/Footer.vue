@@ -1,5 +1,5 @@
 <template>
-  <footer class="w-full bottom-0 bg-gray-900 px-9 py-6 mt-9 z-50">
+  <footer class="w-full bg-gray-900 px-9 py-6 z-50">
         <h2 class="text-white text-2xl font-medium">Smart Lottery</h2>
         <ul class="flex ml-4 mt-3">
             <li>

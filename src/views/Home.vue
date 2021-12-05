@@ -7,7 +7,7 @@
   <DecorationCircleSm/>
 
 <!-- Header-->
-<header>
+<header class="min-h-screen">
   <Navigation />
   <PageTitle :chance='lotteryExplanation'
              :owner='owner'
