@@ -4,7 +4,10 @@ const DataContext = createContext();
 
 export const ContractProvider = ({ children }) => {
   const defaultContractId = process.env.REACT_APP_CONTRACT_ID;
-  const [data, setData] = useState(localStorage.getItem('CONTRACT_ID') ?? defaultContractId);
+  const contractId = localStorage.getItem('CONTRACT_ID');
+  !contractId && localStorage.setItem('CONTRACT_ID', defaultContractId);
+
+  const [data, setData] = useState(contractId ?? defaultContractId);
 
   const setContractId = (contractId) => {
     localStorage.setItem('CONTRACT_ID', contractId);
