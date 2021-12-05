@@ -87,11 +87,18 @@
 
     </div>
 
-    <div class="relative w-full flex bg-white text-gray-900 px-5 md:px-9">
+    <div class="relative w-full flex justify-between bg-white text-gray-900 px-5 md:px-9">
 
+        <!-- Brand title -->
+        <a href="#" class="flex items-center text-lg font-medium my-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-yellow-400 h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+            </svg>
+            Smart lottery
+        </a>
 
         <!-- Deploy POPUP section -->
-        <div class="hidden absolute left-56 lg:left-96 md:flex flex-col items-center space-y-1">
+        <div class="relative hidden md:flex flex-col items-center space-y-1">
 
             <!-- POPUP button -->
             <a href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-yellow-200 rounded-b-full bg-yellow-400 text-gray-800 hover:text-yellow-400 hover:bg-gray-800 hover:border-gray-200 animate-pulse">
@@ -124,10 +131,10 @@
             </div> -->
 
             <!-- POPUP Form -->
-            <!-- <div class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 w-screen md:w-500"> -->
+            <div class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 w-screen md:w-500">
 
                 <!-- NEAR Logo -->
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="151" height="40" viewBox="0 0 151 40" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="151" height="40" viewBox="0 0 151 40" fill="none">
                     <g clip-path="url(#clip0_303_311)">
                     <path d="M75.5882 8.30057V31.4804C75.5882 31.657 75.4558 31.8336 75.235 31.8336H72.8067C71.7029 31.8336 70.6432 31.2596 70.0251 30.3324L59.0754 13.4222L59.4286 21.8553V31.5246C59.4286 31.7012 59.2961 31.8778 59.0754 31.8778H55.8964C55.7198 31.8778 55.5432 31.7453 55.5432 31.5246V8.30057C55.5432 8.12397 55.6757 7.94736 55.8964 7.94736H58.2806C59.3844 7.94736 60.4441 8.52133 61.0622 9.44853L72.0119 26.3146L71.6587 17.8816V8.30057C71.6587 8.12397 71.7912 7.94736 72.0119 7.94736H75.1909C75.4558 7.94736 75.5882 8.07981 75.5882 8.30057Z" fill="black"/>
                     <path d="M108.172 31.7895H104.817C104.596 31.7895 104.42 31.5687 104.508 31.3479L113.427 8.25642C113.515 8.07981 113.691 7.94736 113.868 7.94736H118.107C118.327 7.94736 118.504 8.07981 118.548 8.25642L127.511 31.3479C127.599 31.5687 127.423 31.7895 127.202 31.7895H123.846C123.714 31.7895 123.582 31.7012 123.537 31.5687L116.341 12.5833C116.252 12.3184 115.811 12.3184 115.722 12.5833L108.526 31.5687C108.437 31.7012 108.305 31.7895 108.172 31.7895Z" fill="black"/>
@@ -141,55 +148,49 @@
                     </clipPath>
                     </defs>
                 </svg>
-                 -->
+                
                 <!-- Title -->
-                <!-- <p class="text-2xl font-bold text-gray-900 mt-4">Contract deploy</p> -->
+                <p class="text-2xl font-bold text-gray-900 mt-4">Contract deploy</p>
 
                 <!-- Description -->
-                <!-- <p class="text-center mt-3 text-gray-500">
+                <p class="text-center mt-3 text-gray-500">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eeuismod amet faucibus. <span class="text-gray-800 font-bold">
                     Turpis sodales condimentum quam sed et tincidunt parturient volutpat. </span>
                     Eu nibh congue et risus amet laoreet diam. Bibendum.
-                </p> -->
+                </p>
 
                 <!-- Current ID -->
-                <!-- <p class="text-sm font-semibold text-yellow-400 mt-3">Current ID</p>
-                <p class="text-sm font-bold text-gray-900 mt-1">“dev-1635829277525-2258924695353”</p> -->
+                <p class="text-sm font-semibold text-yellow-400 mt-3">Current ID</p>
+                <p class="text-sm font-bold text-gray-900 mt-1">“dev-1635829277525-2258924695353”</p>
 
                 <!-- Form -->
-                <!-- <form action="" class="w-full"> -->
+                <form action="" class="w-full">
 
                     <!-- Normal input -->
-                    <!-- <input type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID"> -->
+                    <input type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
                     
                     <!-- Error input -->
-                    <!-- <div class="w-full">
+                    <div class="w-full">
                         <div class="w-full flex items-center justify-between mt-4">
                             <p class="text-red-500 text-xs font-bold">Something went wrong</p>
                             <p class="text-yellow-400 text-xs font-bold">Check a ID</p>
                         </div>
                         <input type="text" class="mt-2 w-full h-10 border-2 border-red-500 rounded-md foucs:outline-none text-red-500 text-xs py-3 font-semibold" placeholder="Set your contract ID">
-                    </div> -->
+                    </div>
 
                     <!-- Deploy button -->
-                    <!-- <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200">Deploy</a> -->
+                    <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200">Deploy</a>
 
                     <!-- Cancele deploy button -->
-                    <!-- <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200">Cancel deployment</a> -->
+                    <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200">Cancel deployment</a>
                 
-                <!-- </form> -->
-            <!-- </div> -->
+                </form>
+            </div>
             
         </div>
 
-        <!-- Brand title -->
-        <a href="#" class="flex items-center text-lg font-medium my-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-yellow-400 h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-            </svg>
-            Smart lottery
-        </a>
-        <div v-if="accountId" class="ml-auto hidden md:flex">
+        
+        <div v-if="accountId" class="hidden md:flex">
             <!-- Account btn -->
             <a href="#" class="flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -215,7 +216,7 @@
                 Logout
             </button>
         </div>
-        <div v-else  class="ml-auto hidden md:flex">
+        <div v-else  class="hidden md:flex">
                 <button  @click="signIn" class="flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
                 Login
             </button>
