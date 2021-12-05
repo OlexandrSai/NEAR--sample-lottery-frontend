@@ -3,7 +3,7 @@ import { wallet } from '../../services/near';
 
 export const PlayComponent = ({ accountId, owner, contractId, fee, has_played, play, reset, setApiError }) => {
   const handlePlay = () => {
-    if (owner) {
+    if (accountId) {
       play();
     } else {
       try {
