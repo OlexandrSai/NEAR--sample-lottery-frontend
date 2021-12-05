@@ -105,6 +105,10 @@ export const play = (fee, hasPlayed) => {
   console.log(response);
 };
 
+// -----------------------------------------------------------------------------------
+// Admin functions
+// -----------------------------------------------------------------------------------
+
 //function to configure Lottery
 export const configureLottery = ({ chance }) => {
   const CONTRACT_ID = localStorage.getItem('CONTRACT_ID');

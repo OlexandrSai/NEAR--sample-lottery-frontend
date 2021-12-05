@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { wallet } from '../services/near';
 import { Footer } from '../components/Footer';
-import { Options } from '../components/Options';
 import { useLottery } from '../hooks/useLottery';
 import { PageTitle } from '../components/PageTitle';
 import { Navigation } from '../components/Navigation';
@@ -48,7 +47,7 @@ export const Home = () => {
           play={play}
           reset={reset}
         />
-        {accountId && owner === accountId ? <Options chance={chance} fee={fee} /> : null}
+        {/* {accountId && owner === accountId ? <Options chance={chance} fee={fee} /> : null} */}
       </header>
 
       <Footer />
