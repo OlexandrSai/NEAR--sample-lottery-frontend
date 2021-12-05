@@ -48,7 +48,7 @@ export const PageTitle = ({ chance, owner, winner, fee, pot, fee_strategy, has_p
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
               <p className="ml-3">Chance of victory</p>
-              <p className="ml-auto">{chance == '' ? chance : chance.match(/(\d+)/)[0] + '%'}</p>
+              {chance ? <p className="ml-auto">{chance}</p> : null}
             </div>
           </div>
           <div className="sm:block md:block lg:block xl:flex sm:pr-5 xl:pr-0 text-gray-900">
