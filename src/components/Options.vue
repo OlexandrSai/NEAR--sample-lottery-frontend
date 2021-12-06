@@ -15,7 +15,7 @@
                     </svg>
                     <p class="">Increase pot</p>
                     <p class="ml-auto mr-5">10.0</p>
-                    <a href="#" class="flex text-gray-900 inline-block border-2 border-yellow-400 rounded-md px-4 py-1 hover:bg-yellow-400">
+                    <a href="#" class="flex text-gray-900 border-2 border-yellow-400 rounded-md px-4 py-1 hover:bg-yellow-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>Change</a>
@@ -28,7 +28,7 @@
                     </svg>
                     <p class="">Fee</p>
                     <p class="ml-auto mr-5">0.6</p>
-                    <a href="#" class="flex text-gray-900 inline-block border-2 border-yellow-400 rounded-md px-4 py-1 hover:bg-yellow-400">
+                    <a href="#" class="flex text-gray-900 border-2 border-yellow-400 rounded-md px-4 py-1 hover:bg-yellow-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>Change</a>
@@ -41,7 +41,7 @@
                     </svg>
                     <p class="">Payout</p>
                     <p class="ml-auto mr-5">21</p>
-                    <a href="#" class="inline-block flex text-gray-900 border-2 border-yellow-400 rounded-md px-4 py-1 hover:bg-yellow-400">
+                    <a href="#" class="flex text-gray-900 border-2 border-yellow-400 rounded-md px-4 py-1 hover:bg-yellow-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
