@@ -57,7 +57,7 @@ import {
       const handlePlay = async () => {
         fee.value = await getFee()
         hasPlayed.value = await getHasPlayed(accountId)
-        play(fee.value,hasPlayed.value);
+        await play(fee.value,hasPlayed.value);
       };
 
       const handleReset = async () => {
