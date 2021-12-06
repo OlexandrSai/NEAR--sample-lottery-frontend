@@ -4,11 +4,11 @@
         <div class="relative hidden md:flex flex-col items-center space-y-1">
 
             <!-- POPUP button -->
-            <a href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-yellow-200 rounded-b-full bg-yellow-400 text-gray-800 hover:text-yellow-400 hover:bg-gray-800 hover:border-gray-200 animate-pulse">
+            <button @click="isChangeContractIdFormOpened=!isChangeContractIdFormOpened" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-yellow-200 rounded-b-full bg-yellow-400 text-gray-800 hover:text-yellow-400 hover:bg-gray-800 hover:border-gray-200 animate-pulse">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-4" viewBox="0 0 20 11" fill="none">
                     <path d="M1.86998 0.408361L0.0999756 1.8917L9.99998 10.1334L19.9 1.88336L18.13 0.408361L9.99998 7.18336L1.86998 0.408361Z" fill="currentColor"/>
                 </svg>
-            </a>
+            </button>
 
             <!-- POPUP button when menu opened -->
             <!-- <a href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-gray-200 rounded-b-full bg-gray-600 text-yellow-400 hover:text-gray-800 hover:bg-yellow-400 hover:border-yellow-200 animate-pulse">
@@ -34,7 +34,7 @@
             </div> -->
 
             <!-- POPUP Form -->
-            <div class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 w-screen md:w-500">
+            <div v-if="isChangeContractIdFormOpened" class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 w-screen md:w-500">
 
                 <!-- NEAR Logo -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="151" height="40" viewBox="0 0 151 40" fill="none">
@@ -93,3 +93,18 @@
         </div>
 
 </template>
+
+<script>
+import { useContractProvider } from "@/composables/contractProvider"
+export default {
+    setup () {
+        const  { contractId, setContractId, isChangeContractIdFormOpened }  = useContractProvider();
+
+        return {
+            contractId,
+            setContractId,
+            isChangeContractIdFormOpened
+        }
+    }
+}
+</script>

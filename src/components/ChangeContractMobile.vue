@@ -20,11 +20,13 @@
         <div class="absolute z-20 w-full top-0 left-0 flex flex-col items-center bg-white shadow-xl pb-10 px-5">
 
             <!-- POPUP button when menu opened -->
-            <a href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-gray-200 rounded-b-full bg-gray-600 text-yellow-400 hover:text-gray-800 hover:bg-yellow-400 hover:border-yellow-200 animate-pulse">
+            <a @click="isChangeContractIdFormOpenedMobile=!isChangeContractIdFormOpenedMobile" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-gray-200 rounded-b-full bg-gray-600 text-yellow-400 hover:text-gray-800 hover:bg-yellow-400 hover:border-yellow-200 animate-pulse">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-4 transform rotate-180" viewBox="0 0 20 11" fill="none">
                     <path d="M1.86998 0.408361L0.0999756 1.8917L9.99998 10.1334L19.9 1.88336L18.13 0.408361L9.99998 7.18336L1.86998 0.408361Z" fill="currentColor"/>
                 </svg>
             </a>
+
+            <div v-if="isChangeContractIdFormOpenedMobile">
 
             <!-- NEAR Logo -->
             <svg xmlns="http://www.w3.org/2000/svg" class="mt-4" width="151" height="40" viewBox="0 0 151 40" fill="none">
@@ -79,7 +81,19 @@
 
             </form>
 
+            </div>
+
         </div>
 
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            isChangeContractIdFormOpenedMobile: false
+        }
+    }
+}
+</script>

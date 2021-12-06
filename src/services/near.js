@@ -1,21 +1,21 @@
 import { keyStores, Near, WalletConnection,  utils } from "near-api-js";
 import BN from "bn.js";
 
-export const CONTRACT_ID = "dev-1632981095270-35568974700849";
-const gas = new BN("70000000000000");
+export const CONTRACT_ID = process.env.VUE_APP_CONTRACT_ID;
+const gas = new BN(process.env.VUE_APP_gas);
 
 export const near = new Near({
-    networkId: "testnet",
+    networkId: process.env.VUE_APP_networkId,
     keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-    nodeUrl: "https://rpc.testnet.near.org",
-    walletUrl: "https://wallet.testnet.near.org",
+    nodeUrl: process.env.VUE_APP_nodeUrl,
+    walletUrl: process.env.VUE_APP_walletUrl,
   });
 
   export const wallet = new WalletConnection(near, "lottery");
 
-  // -----------------------------------------------------------------------------------
-  // view functions
-  // -----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
+// view functions
+// -----------------------------------------------------------------------------------
 
   //function to get owner  of the  contract
 export const getOwner = () => {
@@ -67,9 +67,9 @@ export const getExplainLottery = () => {
   return wallet.account().viewFunction(CONTRACT_ID, "explain_lottery");
 };
 
-  // -----------------------------------------------------------------------------------
-  // change functions
-  // -----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
+// change functions
+// -----------------------------------------------------------------------------------
 
 //function to play lottery
 export const play = (fee,hasPlayed) => {
@@ -77,8 +77,7 @@ export const play = (fee,hasPlayed) => {
       let feeNumber = fee.match(/(\d+)/)[0] //* 1000000000000000000000000
       console.log(feeNumber)
       if (hasPlayed) {
-          //+fee
-          console.log(utils.format.parseNearAmount(feeNumber))
+        console.log(utils.format.parseNearAmount(feeNumber))
         response = wallet.account().functionCall({
         contractId: CONTRACT_ID,
         methodName: "play",
@@ -89,8 +88,7 @@ export const play = (fee,hasPlayed) => {
         response = wallet.account().functionCall({
             contractId: CONTRACT_ID,
             methodName: "play",
-            gas,
-    
+            gas
             }) 
         }
       console.log(response)
@@ -123,4 +121,3 @@ export const reset = () => {
   })
   console.log(response)
 }
-

@@ -63,7 +63,6 @@
 
 <script>
 import {wallet, CONTRACT_ID } from '@/services/near'
-
 import ChangeContract from '@/components/ChangeContract.vue'
 import ChangeContractMobile from '@/components/ChangeContractMobile.vue'
 
