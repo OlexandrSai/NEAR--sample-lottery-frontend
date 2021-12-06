@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
 import DecorationDots from  '@/components/DecorationDots.vue'
 import DecorationLines from '@/components/DecorationLines.vue'
 import DecorationCircleLg from '@/components/DecorationCircleLg.vue'

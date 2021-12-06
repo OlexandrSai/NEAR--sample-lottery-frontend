@@ -3,6 +3,7 @@
         
         <!-- Place for POPUP mobile button (past here) -->
         <!-- ChangeContractMobile.vue -->
+        <ChangeContractMobile/>
 
         <div class="w-full flex justify-between bg-white text-gray-900 px-5 md:px-9">
             
@@ -15,12 +16,12 @@
                 </a>
 
                 <!-- Place for POPUP button (past here) -->
-                <!-- ChangeContract.vue -->
+                <ChangeContract/>
 
                 <div class="">
                     <div v-if="accountId" class="ml-auto hidden md:flex">
                         <!-- Account btn -->
-                        <a href="#" class="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300">
+                        <a href="#" class="flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
@@ -37,7 +38,7 @@
                             </span>    
                         </a> -->
                         <!-- Logout btn -->
-                        <button  @click="signOut" class="block flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
+                        <button  @click="signOut" class="flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 ml-7 hover:bg-yellow-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
@@ -62,7 +63,15 @@
 
 <script>
 import {wallet, CONTRACT_ID } from '@/services/near'
+
+import ChangeContract from '@/components/ChangeContract.vue'
+import ChangeContractMobile from '@/components/ChangeContractMobile.vue'
+
 export default {
+    components: {
+        ChangeContract,
+        ChangeContractMobile,
+    },
     setup() {
         const accountId = wallet.getAccountId();
         return {
