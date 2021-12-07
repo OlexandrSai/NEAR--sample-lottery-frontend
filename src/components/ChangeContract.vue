@@ -10,21 +10,6 @@
                 </svg>
             </button>
 
-            <!-- POPUP button when menu opened -->
-            <!-- <a href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-gray-200 rounded-b-full bg-gray-600 text-yellow-400 hover:text-gray-800 hover:bg-yellow-400 hover:border-yellow-200 animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-4 transform rotate-180" viewBox="0 0 20 11" fill="none">
-                    <path d="M1.86998 0.408361L0.0999756 1.8917L9.99998 10.1334L19.9 1.88336L18.13 0.408361L9.99998 7.18336L1.86998 0.408361Z" fill="currentColor"/>
-                </svg>
-            </a> -->
-
-            <!-- POPUP button when contract deployed and menu closed -->
-            <!-- <a href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-gray-200 rounded-b-full bg-gray-600 text-yellow-400 hover:text-gray-800 hover:bg-yellow-400 hover:border-yellow-200 animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-4" viewBox="0 0 20 11" fill="none">
-                    <path d="M1.86998 0.408361L0.0999756 1.8917L9.99998 10.1334L19.9 1.88336L18.13 0.408361L9.99998 7.18336L1.86998 0.408361Z" fill="currentColor"/>
-                </svg>
-            </a> -->
-
-
             <p class="text-gray-900 font-bold text-sm text-center">Try frontend with your deployed contract ID</p>
 
             <!-- Current ID -->
@@ -64,28 +49,28 @@
 
                 <!-- Current ID -->
                 <p class="text-sm font-semibold text-yellow-400 mt-3">Current ID</p>
-                <p class="text-sm font-bold text-gray-900 mt-1">“dev-1635829277525-2258924695353”</p>
+                <p class="text-sm font-bold text-gray-900 mt-1">{{ contractId.value }}</p>
 
                 <!-- Form -->
                 <form action="" class="w-full">
 
                     <!-- Normal input -->
-                    <input type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
+                    <input v-model="contractId.value" type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
                     
                     <!-- Error input -->
-                    <div class="w-full">
+                    <!-- <div class="w-full">
                         <div class="w-full flex items-center justify-between mt-4">
                             <p class="text-red-500 text-xs font-bold">Something went wrong</p>
                             <p class="text-yellow-400 text-xs font-bold">Check a ID</p>
                         </div>
                         <input type="text" class="mt-2 w-full h-10 border-2 border-red-500 rounded-md foucs:outline-none text-red-500 text-xs py-3 font-semibold" placeholder="Set your contract ID">
-                    </div>
+                    </div> -->
 
                     <!-- Deploy button -->
                     <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200">Deploy</a>
 
                     <!-- Cancele deploy button -->
-                    <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200">Cancel deployment</a>
+                    <button  type="button" @click="setDefaultContractId" class="mt-5 h-10 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200">Reset to default</button>
                 
                 </form>
             </div>
@@ -98,11 +83,13 @@
 import { useContractProvider } from "@/composables/contractProvider"
 export default {
     setup () {
-        const  { contractId, setContractId, isChangeContractIdFormOpened }  = useContractProvider();
+        const  { defaultContractId, contractId, setContractId, setDefaultContractId, isChangeContractIdFormOpened }  = useContractProvider();
 
         return {
+            defaultContractId,
             contractId,
             setContractId,
+            setDefaultContractId,
             isChangeContractIdFormOpened
         }
     }
