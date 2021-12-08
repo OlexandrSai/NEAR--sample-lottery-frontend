@@ -68,10 +68,7 @@ export const Navigation = ({ accountId, setAccountId, apiError, setApiError }) =
 
           {accountId ? (
             <div className="ml-auto hidden md:flex">
-              <a
-                href="#"
-                className="flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300"
-              >
+              <span className="flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="mr-2 h-6 w-6"
@@ -87,7 +84,7 @@ export const Navigation = ({ accountId, setAccountId, apiError, setApiError }) =
                   />
                 </svg>
                 {accountId}
-              </a>
+              </span>
 
               <button
                 onClick={signOut}

@@ -58,9 +58,10 @@ export const useLottery = ({ contractId, setApiError }) => {
   }, [updateValues]);
 
   const handlePlay = async () => {
-    play(fee, hasPlayed);
+    await play(fee, hasPlayed);
     setFee(await getFee());
     setHasPlayed(await getHasPlayed(accountId));
+    setWinner(await getWinner());
   };
 
   const handleReset = async () => {
