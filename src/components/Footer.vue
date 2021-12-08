@@ -15,9 +15,3 @@
         <p class="text-gray-700 text-right">© 2021 All rights reserverd. Develop by  <a href="https://t.me/NazarNyzhnyk" class="text-gray-400 hover:underline font-medium">Nazar Nyzhnyk</a></p>
     </footer>
 </template>
-
-<script>
-export default {
-
-}
-</script>

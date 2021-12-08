@@ -19,7 +19,7 @@
             </div> -->
 
             <!-- POPUP Form -->
-            <div v-if="isChangeContractIdFormOpened" class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 w-screen md:w-500">
+            <div v-if="isChangeContractIdFormOpened || apiError" class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 w-screen md:w-500">
 
                 <!-- NEAR Logo -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="151" height="40" viewBox="0 0 151 40" fill="none">
@@ -42,20 +42,25 @@
 
                 <!-- Description -->
                 <p class="text-center mt-3 text-gray-500">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eeuismod amet faucibus. <span class="text-gray-800 font-bold">
-                    Turpis sodales condimentum quam sed et tincidunt parturient volutpat. </span>
-                    Eu nibh congue et risus amet laoreet diam. Bibendum.
+                    Please make sure that you put in input field correct contract id and your contract is deployed correctly.
+                    This is <a class="text-blue-500" target="_blank" href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery">contract source code</a> with setup instructions.
+                    <span class="text-gray-800 font-bold">If  your input is not valid, your will see error message with description of error</span>
                 </p>
 
                 <!-- Current ID -->
                 <p class="text-sm font-semibold text-yellow-400 mt-3">Current ID</p>
-                <p class="text-sm font-bold text-gray-900 mt-1">{{ contractId.value }}</p>
+                <p class="text-sm font-bold text-gray-900 mt-1">{{ contractId }}</p>
 
                 <!-- Form -->
                 <form action="" class="w-full">
+                    <div v-if="apiError" className="w-full flex items-center justify-between mt-4">
+                        <p className="text-red-500 text-xs font-bold">{{apiError}}</p>
+                        <p className="text-yellow-400 text-xs font-bold">Check an ID</p>
+                    </div>
 
                     <!-- Normal input -->
-                    <input v-model="contractId.value" type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
+                    <input v-if="apiError" v-model="inputContractId" type="text" class="mt-4 w-full h-10 border-2 border-red-500 text-red-500 focus:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
+                    <input  v-else v-model="inputContractId" type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
                     
                     <!-- Error input -->
                     <!-- <div class="w-full">
@@ -66,11 +71,23 @@
                         <input type="text" class="mt-2 w-full h-10 border-2 border-red-500 rounded-md foucs:outline-none text-red-500 text-xs py-3 font-semibold" placeholder="Set your contract ID">
                     </div> -->
 
-                    <!-- Deploy button -->
-                    <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200">Deploy</a>
+                    <div className="w-full flex items-center justify-between mt-4">
+                    
+          <button  type="button"
+              @click="handleSetContractId(inputContractId)"
+              className="mt-5 h-10 p-4 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200"
+            >
+              Apply
+            </button>
 
-                    <!-- Cancele deploy button -->
-                    <button  type="button" @click="setDefaultContractId" class="mt-5 h-10 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200">Reset to default</button>
+
+          <button type="button"
+            @click="handleSetDefaultContractId()"
+            className="mt-5 h-10 p-4 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200"
+          >
+            Reset to default
+          </button>
+        </div>
                 
                 </form>
             </div>
@@ -81,16 +98,27 @@
 
 <script>
 import { useContractProvider } from "@/composables/contractProvider"
+import { useLottery } from "@/composables/near"
 export default {
     setup () {
-        const  { defaultContractId, contractId, setContractId, setDefaultContractId, isChangeContractIdFormOpened }  = useContractProvider();
+        const  { defaultContractId, contractId, inputContractId, setContractId, setDefaultContractId, isChangeContractIdFormOpened }  = useContractProvider();
+        const  { update, apiError }  = useLottery();
 
         return {
             defaultContractId,
             contractId,
-            setContractId,
+            inputContractId,
+            apiError,
             setDefaultContractId,
-            isChangeContractIdFormOpened
+            isChangeContractIdFormOpened,
+            handleSetDefaultContractId: () => {
+                setDefaultContractId()
+                update()
+            },
+            handleSetContractId:async (id) => {
+                setContractId(id),
+                await update()
+            }
         }
     }
 }

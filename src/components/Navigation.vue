@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import {wallet, CONTRACT_ID } from '@/services/near'
+import { useWallet } from "@/composables/near"
 import ChangeContract from '@/components/ChangeContract.vue'
 import ChangeContractMobile from '@/components/ChangeContractMobile.vue'
 
@@ -72,14 +72,11 @@ export default {
         ChangeContractMobile,
     },
     setup() {
-        const accountId = wallet.getAccountId();
+        const { accountId, signIn,  signOut } = useWallet();
         return {
             accountId,
-            signIn: () => wallet.requestSignIn(CONTRACT_ID),
-            signOut: () => {
-                wallet.signOut();
-                window.location.reload();
-            }
+            signIn,
+            signOut
         }
     }
 }

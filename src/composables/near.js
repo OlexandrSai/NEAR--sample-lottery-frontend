@@ -1,6 +1,7 @@
 import { ref, onMounted } from "vue";
-import {wallet} from '@/services/near'
 import {
+    wallet,
+    CONTRACT_ID,
     getOwner,
     getWinner,
     getPot,
@@ -15,11 +16,11 @@ import {
     reset
   } from "../services/near";
 
+  //this is the same array as at contract side, it used to display not a number of strategy, but a text
   const FeeStrategies = ['Free','Constant','Linear','Exponential']
-  const accountId = wallet.getAccountId();
 
   export const useLottery = () => {
-      const  owner = ref('')
+      const  owner = ref("")
       const  winner = ref('')
       const  pot = ref('')
       const  fee = ref('')
@@ -29,34 +30,40 @@ import {
       const  active = ref(null)
       const  feesExplanation =  ref('')
       const  lotteryExplanation  = ref('')
-      const err = ref(null);
+      const  apiError = ref(null);
 
       onMounted(async () => {
           try {
             updateValues()
           }
           catch (e) {
-              err.value = e;
-              console.log('error');
+            apiError.value = e;
+            console.log(apiError.value);
           }
       })
 
       const updateValues = async () => {
-        owner.value = await getOwner()
-        winner.value = await getWinner()
-        pot.value = await getPot()
-        fee.value = await getFee()
-        feeStrategy.value = FeeStrategies[await getFeeStrategy()]
-        hasPlayed.value = await getHasPlayed(accountId)
-        lastPlayed.value = await getLastPlayed()
-        active.value = await getActive()
-        feesExplanation.value = await getExplainFees()
-        lotteryExplanation.value = await getExplainLottery()
+        try {
+          owner.value = await getOwner()
+          winner.value = await getWinner()
+          pot.value = await getPot()
+          fee.value = await getFee()
+          feeStrategy.value = FeeStrategies[await getFeeStrategy()]
+          console.log(wallet.getAccountId())
+          hasPlayed.value = wallet.getAccountId() && await getHasPlayed(wallet.getAccountId())
+          lastPlayed.value = await getLastPlayed()
+          active.value = await getActive()
+          feesExplanation.value = await getExplainFees()
+          lotteryExplanation.value = await getExplainLottery()
+        } catch (e) {
+          apiError.value = e;
+          console.log(apiError.value);
+        }
       }
 
       const handlePlay = async () => {
         fee.value = await getFee()
-        hasPlayed.value = await getHasPlayed(accountId)
+        hasPlayed.value = await getHasPlayed(wallet.getAccountId())
         await play(fee.value,hasPlayed.value);
       };
 
@@ -75,7 +82,42 @@ import {
         active,
         feesExplanation,
         lotteryExplanation,
+        apiError,
         play:handlePlay,
-        reset:handleReset
+        reset:handleReset,
+        update: updateValues
       };
   };
+
+  export const useWallet = () => {
+    const accountId = ref('')
+    accountId.value = wallet.getAccountId()
+    const err = ref(null)
+  
+    onMounted(async () => {
+      try {
+        accountId.value = wallet.getAccountId()
+      } catch (e) {
+        err.value = e;
+        console.error(err.value);
+      }
+    });
+  
+    const handleSignIn = () => {
+      wallet.requestSignIn({
+        contractId: CONTRACT_ID,
+        methodNames: [] // add methods names to restrict access
+      })
+    };
+  
+    const handleSignOut = () => {
+      wallet.signOut()
+      accountId.value = wallet.getAccountId()
+    };
+  
+    return {
+      accountId,
+      signIn: handleSignIn,
+      signOut: handleSignOut
+    }
+  }
