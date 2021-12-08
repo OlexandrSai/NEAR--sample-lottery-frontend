@@ -29,7 +29,7 @@ Example of such  function:
 To get possibility to work with the full functionality of the smart contract, you need to paste your contractId inside UI of VueJs deployed dapp or React deployed dapp. 
 Before pasting id make sure that you deployed correct smart contract, in other case this code may  not work as expected.
 
-<a href="" target="_blank">Link to smart contract repo</a>
+<a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">Link to smart contract repo</a>
 
 <a href="" target="_blank">How to correctly deploy NCD.L1.sample--lottery smart contract (video tutorial)</a>
 
