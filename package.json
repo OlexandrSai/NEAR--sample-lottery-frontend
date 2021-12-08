@@ -12,7 +12,8 @@
     "core-js": "^3.6.5",
     "near-api-js": "^0.42.0",
     "vue": "^3.0.0",
-    "vue-loading-overlay": "^4.0.3"
+    "vue-loading-overlay": "^4.0.3",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
