@@ -71,23 +71,22 @@
                         <input type="text" class="mt-2 w-full h-10 border-2 border-red-500 rounded-md foucs:outline-none text-red-500 text-xs py-3 font-semibold" placeholder="Set your contract ID">
                     </div> -->
 
-                    <div className="w-full flex items-center justify-between mt-4">
-                    
-          <button  type="button"
-              @click="handleSetContractId(inputContractId)"
-              className="mt-5 h-10 p-4 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200"
-            >
-              Apply
-            </button>
+                    <div className="w-full flex items-center justify-between space-x-2">
+                        <button type="button"
+                            @click="handleSetDefaultContractId()"
+                            className="mt-5 h-10 w-1/2 p-4 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200"
+                        >
+                            Reset to default
+                        </button>
+                        <button  type="button"
+                            @click="handleSetContractId(inputContractId)"
+                            className="mt-5 h-10 w-1/2 p-4 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200"
+                            >
+                            Apply
+                            </button>
 
 
-          <button type="button"
-            @click="handleSetDefaultContractId()"
-            className="mt-5 h-10 p-4 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200"
-          >
-            Reset to default
-          </button>
-        </div>
+                    </div>
                 
                 </form>
             </div>
