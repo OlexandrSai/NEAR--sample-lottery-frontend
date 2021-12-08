@@ -1,5 +1,7 @@
 #🎓 Lottery dapp
-This repository contains a complete frontend applications to work with <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery">NCD.L1.sample--lottery smart contract</a> targeting the NEAR platform:
+This repository contains a complete frontend applications to work with 
+
+<a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">NCD.L1.sample--lottery smart contract</a> targeting the NEAR platform:
 1. Vue.Js (main branch)
 2. React (react branch)
 
