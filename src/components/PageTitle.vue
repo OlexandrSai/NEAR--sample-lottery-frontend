@@ -77,7 +77,7 @@
                 <!-- Onew row -->
             </div>
             <!-- Playing block -->
-            <div class="w-full bg-white rounded-md px-5 py-6 shadow-2xl md:ml-0 my-9 lg:mt-0 lg:ml-9 ">
+            <div class="w-full bg-white rounded-md px-5 py-6 shadow-2xl md:ml-0 my-9 lg:mb-0 lg:mt-0 lg:ml-9 ">
                 <!-- Wrapper playing block -->
                 <div class="block md:flex">
                     <div class="">
