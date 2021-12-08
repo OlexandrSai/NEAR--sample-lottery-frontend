@@ -35,9 +35,9 @@ Before pasting id make sure that you deployed correct smart contract, in other c
 
 After you deployed  your contract, you need to paste  id in one of deployed dapps
 
-<a href="" target="_blank">Try VueJs deployed app</a>
+<a href="https://sample-lottery.onrender.com/" target="_blank">Try VueJs deployed app</a>
 
-<a href="" target="_blank">Try React deployed app</a>
+<a href="https://sample-lottery-react.onrender.com/" target="_blank">Try React deployed app</a>
 
 <a href="" target="_blank">How to paste  your  contractId in UI(video)</a>
 
