@@ -1,4 +1,4 @@
-#🎓 Lottery dapp
+#  🎓 Lottery dapp
 This repository contains a complete frontend applications to work with 
 
 <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">NCD.L1.sample--lottery smart contract</a> targeting the NEAR platform:
@@ -31,7 +31,7 @@ Before pasting id make sure that you deployed correct smart contract, in other c
 
 <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">Link to smart contract repo</a>
 
-<a href="" target="_blank">How to correctly deploy NCD.L1.sample--lottery smart contract (video tutorial)</a>
+<a href="https://www.loom.com/share/860dfdf5ed804651b2bb19876de04051" target="_blank">How to correctly deploy NCD.L1.sample--lottery smart contract (video tutorial)</a>
 
 After you deployed  your contract, you need to paste  id in one of deployed dapps
 
