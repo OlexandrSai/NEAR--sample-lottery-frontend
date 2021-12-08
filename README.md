@@ -42,7 +42,7 @@ After you deployed  your contract, you need to paste  id in one of deployed dapp
 ### Code walkthrough for NCD students:
 <a href="https://www.loom.com/share/a05799e6d7cf4ab789520e9ca8d28b0a" target="_blank">Vue.Js</a>
 
-<a href="" target="_blank">React</a>
+<a href="https://www.loom.com/share/d66f7ee30a1c409ba5166c7bff14bea7" target="_blank">React</a>
 
 ## Project setup
 In main branch README file is presented setup for Vue.Js, React setup README file is in react branch
