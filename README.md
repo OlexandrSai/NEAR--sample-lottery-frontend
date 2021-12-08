@@ -45,6 +45,7 @@ After you deployed  your contract, you need to paste  id in one of deployed dapp
 <a href="" target="_blank">React</a>
 
 ## Project setup
+In main branch README file is presented setup for Vue.Js, React setup README file is in react branch
 ```
 npm install
 ```
