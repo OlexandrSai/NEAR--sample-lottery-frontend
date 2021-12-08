@@ -87,7 +87,6 @@ export const play = (fee, hasPlayed) => {
   let feeNumber = fee.match(/(\d+)/)[0]; //* 1000000000000000000000000
   console.log(feeNumber);
   if (hasPlayed) {
-    //+fee
     console.log(utils.format.parseNearAmount(feeNumber));
     response = wallet.account().functionCall({
       contractId: CONTRACT_ID,

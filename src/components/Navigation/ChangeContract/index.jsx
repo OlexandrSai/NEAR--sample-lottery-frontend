@@ -75,9 +75,11 @@ export const ChangeContract = ({ apiError, setApiError, setIsOpenChangeContact }
 
       <p className="text-2xl font-bold text-gray-900 mt-4">Contract deploy</p>
 
+      {/* prettier-ignore */}
       <p className="text-center mt-3 text-gray-500">
-        Lorem ipsum dolor sit amet. <span className="text-gray-800 font-bold">Turpis sodales volutpat. </span>
-        Eu nibh congue.
+        Please make sure that you put in input field correct contract id and your contract is deployed correctly. This
+        is <a className="text-blue-500" target="_blank" rel="noreferrer" href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery">contract source code</a> with setup instructions.
+        <span className="text-gray-800 font-bold">If  your input is not valid, your will see error message with description of error</span>
       </p>
 
       <p className="text-sm font-semibold text-yellow-400 mt-3">Current ID</p>

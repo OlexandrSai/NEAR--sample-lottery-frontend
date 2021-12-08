@@ -56,7 +56,6 @@ export const Home = () => {
           reset={reset}
           setApiError={setApiError}
         />
-        {/* {accountId && owner === accountId ? <Options chance={chance} fee={fee} /> : null} */}
       </div>
 
       <Footer />
