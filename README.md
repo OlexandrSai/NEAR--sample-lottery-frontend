@@ -40,7 +40,7 @@ After you deployed  your contract, you need to paste  id in one of deployed dapp
 <a href="https://sample-lottery-react.onrender.com/" target="_blank">Try React deployed app</a>
 
 ### Code walkthrough for NCD students:
-<a href="" target="_blank">Vue.Js</a>
+<a href="https://www.loom.com/share/a05799e6d7cf4ab789520e9ca8d28b0a" target="_blank">Vue.Js</a>
 
 <a href="" target="_blank">React</a>
 
