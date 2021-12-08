@@ -39,8 +39,6 @@ After you deployed  your contract, you need to paste  id in one of deployed dapp
 
 <a href="https://sample-lottery-react.onrender.com/" target="_blank">Try React deployed app</a>
 
-<a href="" target="_blank">How to paste  your  contractId in UI(video)</a>
-
 ### Code walkthrough for NCD students
 <a href="" target="_blank">Vue.Js</a>
 
