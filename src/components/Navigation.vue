@@ -1,8 +1,6 @@
 <template>
     <div class="">
         
-        <!-- Place for POPUP mobile button (past here) -->
-        <!-- ChangeContractMobile.vue -->
         <ChangeContractMobile/>
 
         <div class="w-full flex justify-between bg-white text-gray-900 px-5 md:px-9">

@@ -49,7 +49,6 @@ import {
           pot.value = await getPot()
           fee.value = await getFee()
           feeStrategy.value = FeeStrategies[await getFeeStrategy()]
-          console.log(wallet.getAccountId())
           hasPlayed.value = wallet.getAccountId() && await getHasPlayed(wallet.getAccountId())
           lastPlayed.value = await getLastPlayed()
           active.value = await getActive()

@@ -3,11 +3,11 @@
     <div class="flex md:hidden flex-col items-center justify-center bg-white">
 
         <!-- POPUP button -->
-        <!-- <a href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-yellow-200 rounded-b-full bg-yellow-400 text-gray-800 hover:text-yellow-400 hover:bg-gray-800 hover:border-gray-200 animate-pulse">
+        <button @click="isChangeContractIdFormOpened=!isChangeContractIdFormOpened" href="#" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-yellow-200 rounded-b-full bg-yellow-400 text-gray-800 hover:text-yellow-400 hover:bg-gray-800 hover:border-gray-200 animate-pulse">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-4" viewBox="0 0 20 11" fill="none">
                 <path d="M1.86998 0.408361L0.0999756 1.8917L9.99998 10.1334L19.9 1.88336L18.13 0.408361L9.99998 7.18336L1.86998 0.408361Z" fill="currentColor"/>
             </svg>
-        </a> -->
+        </button>
 
         <!-- <p class="text-gray-900 font-bold text-sm text-center">Try frontend with your deployed contract ID</p> -->
 
@@ -20,13 +20,13 @@
         <div class="absolute z-20 w-full top-0 left-0 flex flex-col items-center bg-white shadow-xl pb-10 px-5">
 
             <!-- POPUP button when menu opened -->
-            <a @click="isChangeContractIdFormOpenedMobile=!isChangeContractIdFormOpenedMobile" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-gray-200 rounded-b-full bg-gray-600 text-yellow-400 hover:text-gray-800 hover:bg-yellow-400 hover:border-yellow-200 animate-pulse">
+            <a @click="isChangeContractIdFormOpened=!isChangeContractIdFormOpened" class="relative z-20 flex justify-center pt-1 w-20 h-10 border-l-8 border-r-8 border-b-8 border-gray-200 rounded-b-full bg-gray-600 text-yellow-400 hover:text-gray-800 hover:bg-yellow-400 hover:border-yellow-200 animate-pulse">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-4 transform rotate-180" viewBox="0 0 20 11" fill="none">
                     <path d="M1.86998 0.408361L0.0999756 1.8917L9.99998 10.1334L19.9 1.88336L18.13 0.408361L9.99998 7.18336L1.86998 0.408361Z" fill="currentColor"/>
                 </svg>
             </a>
 
-            <div v-if="isChangeContractIdFormOpenedMobile">
+            <div v-if="isChangeContractIdFormOpened || apiError">
 
             <!-- NEAR Logo -->
             <svg xmlns="http://www.w3.org/2000/svg" class="mt-4" width="151" height="40" viewBox="0 0 151 40" fill="none">
@@ -49,35 +49,35 @@
 
             <!-- Description -->
             <p class="text-center mt-3 text-gray-500">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eeuismod amet faucibus. <span class="text-gray-800 font-bold">Turpis sodales condimentum quam sed et tincidunt parturient volutpat. </span>
-                    Eu nibh congue et risus amet laoreet diam. Bibendum.
+                Please make sure that you put in input field correct contract id and your contract is deployed correctly.
+                This is <a class="text-blue-500" target="_blank" href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery">contract source code</a> with setup instructions.
+                <span class="text-gray-800 font-bold">If  your input is not valid, your will see error message with description of error</span>
             </p>
 
             <!-- Current ID -->
             <p class="text-sm font-semibold text-yellow-400 mt-3">Current ID</p>
-            <p class="text-sm font-bold text-gray-900 mt-1">“dev-1635829277525-2258924695353”</p>
+            <p class="text-sm font-bold text-gray-900 mt-1">{{contractId}}</p>
 
 
-                <!-- Form -->
+            <!-- Form -->
             <form action="" class="w-full">
 
-                <!-- Normal input -->
-                <input type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
+                <div v-if="apiError" className="w-full flex items-center justify-between mt-4">
+                    <p className="text-red-500 text-xs font-bold">{{apiError}}</p>
+                    <p className="text-yellow-400 text-xs font-bold">Check an ID</p>
+                </div>
 
-                <!-- Error input -->
-                <!-- <div class="w-full">
-                    <div class="w-full flex items-center justify-between mt-4">
-                        <p class="text-red-500 text-xs font-bold">Something went wrong</p>
-                        <p class="text-yellow-400 text-xs font-bold">Check a ID</p>
-                    </div>
-                    <input type="text" class="mt-2 w-full h-10 border-2 border-red-500 rounded-md foucs:outline-none text-red-500 text-xs py-3 font-semibold" placeholder="Set your contract ID">
-                </div> -->
+                <!-- Normal input -->
+                <input v-if="apiError" v-model="inputContractId" type="text" class="mt-4 w-full h-10 border-2 border-red-500 text-red-500 focus:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
+                <input  v-else v-model="inputContractId" type="text" class="mt-4 w-full h-10 border-2 border-yellow-400 rounded-md foucs:outline-none text-xs py-3 font-semibold" placeholder="Set your contract ID">
 
                 <!-- Deploy button -->
-                <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200">Deploy</a>
+                <button  type="button" @click="handleSetContractId(inputContractId)"
+                 class="mt-5 h-10 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200">Apply</button>
 
-                <!-- Cancele deploy button -->
-                <!-- <a href="#" class="mt-5 h-10 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200">Cancel deployment</a> -->
+                <!-- Cancel deploy button -->
+                <button type="button" @click="handleSetDefaultContractId()"
+                 class="mt-5 h-10 flex items-center justify-center text-sm border-2 text-red-500 border-red-500 bg-white hover:bg-red-500 hover:text-white rounded-md font-bold transform active:scale-95 duration-200">Reset to default</button>
 
             </form>
 
@@ -89,10 +89,27 @@
 </template>
 
 <script>
+import { useContractProvider } from "@/composables/contractProvider"
+import { useLottery } from "@/composables/near"
 export default {
-    data() {
+    setup () {
+        const  { defaultContractId, contractId, inputContractId, setContractId, setDefaultContractId, isChangeContractIdFormOpened }  = useContractProvider();
+        const  { update, apiError }  = useLottery();
         return {
-            isChangeContractIdFormOpenedMobile: false
+            defaultContractId,
+            contractId,
+            inputContractId,
+            apiError,
+            setDefaultContractId,
+            isChangeContractIdFormOpened,
+            handleSetDefaultContractId: () => {
+                setDefaultContractId()
+                update()
+            },
+            handleSetContractId:async (id) => {
+                setContractId(id),
+                await update()
+            }
         }
     }
 }

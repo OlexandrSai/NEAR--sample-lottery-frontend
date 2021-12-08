@@ -105,18 +105,21 @@
                     </div>
                 </div>
                 <div class="w-full flex justify-center">
-                    <button @click="play" style="box-shadow: 0px 4px 15px rgba(255, 206, 34, 0.75);" class="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300">Play</button>
+                    <button  v-if="accountId" @click="play" style="box-shadow: 0px 4px 15px rgba(255, 206, 34, 0.75);" class="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300">Play</button>
+                    <button  v-else @click="signIn" style="box-shadow: 0px 4px 15px rgba(255, 206, 34, 0.75);" class="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300">Play</button>
                 </div>
             </div>           
         </div>
 </template>
 
 <script>
+import { useWallet } from "@/composables/near"
 import { useLottery } from "@/composables/near"
 
 export default {
   setup(){
     const  { owner, winner, pot, fee, feeStrategy,hasPlayed, lastPlayed, active, feesExplanation, lotteryExplanation,  play,  reset}  = useLottery();
+    const { accountId, signIn,  signOut } = useWallet();
 
     return  {
         owner,
@@ -130,7 +133,10 @@ export default {
         feesExplanation,
         lotteryExplanation,
         play,
-        reset
+        reset,
+        accountId,
+        signIn,
+        signOut
     }
   }
 }
