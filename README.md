@@ -17,7 +17,7 @@ Any content produced by NEAR, or developer resources that NEAR provides, are for
 
 ![image](https://user-images.githubusercontent.com/38455192/145136911-fe10f671-2137-483a-8326-343f857d095a.png)
 
-<a href="" target="_blank">Video demo UI walkthrough</a>
+<a href="https://www.loom.com/share/835719fe8e2e45c4a2970ed435f62a56" target="_blank">Video demo UI walkthrough</a>
 
 You can use this app with contract id`s which was deployed by creators of this repo,  or you can use it with your own deployed  contractId.
 If you are using not yours contractId some functions of the lottery contract will not work because  they are setted to work  only  if owner called this  functions.
