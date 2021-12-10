@@ -1,5 +1,6 @@
 import { wallet } from '../services/near';
 import { useState, useCallback, useEffect } from 'react';
+import { useContract } from '../context/ContractProvider';
 import {
   getOwner,
   getWinner,
@@ -18,7 +19,9 @@ import {
 const FeeStrategies = ['Free', 'Constant', 'Linear', 'Exponential'];
 const accountId = wallet.getAccountId();
 
-export const useLottery = ({ contractId, setApiError }) => {
+export const useLottery = ({ setApiError }) => {
+  const { contractId } = useContract();
+
   const [owner, setOwner] = useState('');
   const [winner, setWinner] = useState('');
   const [pot, setPot] = useState('');

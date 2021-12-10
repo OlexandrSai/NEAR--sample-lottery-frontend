@@ -1,18 +1,18 @@
 import React from 'react';
-import { wallet } from '../../services/near';
 
-export const PlayComponent = ({ accountId, owner, contractId, fee, has_played, play, reset, setApiError }) => {
+export const PlayComponent = ({ accountId, owner, fee, signIn, has_played, play, reset, setApiError }) => {
   const handlePlay = () => {
     if (accountId) {
       play();
     } else {
       try {
-        wallet.requestSignIn(contractId);
+        signIn();
       } catch (error) {
         setApiError(error);
       }
     }
   };
+
   return (
     <div className="w-full bg-white rounded-md px-5 py-6 shadow-2xl md:ml-0 mt-9 lg:mt-0 lg:ml-9 ">
       <div className="block md:flex">

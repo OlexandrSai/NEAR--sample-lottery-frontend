@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { wallet } from '../services/near';
+import { useSign } from '../hooks/useSign';
 import { Footer } from '../components/Footer';
 import { useLottery } from '../hooks/useLottery';
 import { Navigation } from '../components/Navigation';
 import { InfoLottery } from '../components/InfoLottery';
-import { useContract } from '../context/ContractProvider';
 import { PlayComponent } from '../components/PlayComponent';
 import { DecorationDots } from '../components/decoration/DecorationDots';
 import { DecorationLines } from '../components/decoration/DecorationLines';
@@ -13,17 +12,13 @@ import { DecorationCircleMd } from '../components/decoration/DecorationCircleMd'
 import { DecorationCircleSm } from '../components/decoration/DecorationCircleSm';
 
 export const Home = () => {
-  const { contractId } = useContract();
-
   const [apiError, setApiError] = useState('');
 
   const { owner, winner, pot, fee, feeStrategy, hasPlayed, lotteryExplanation, play, reset } = useLottery({
-    contractId,
-    apiError,
     setApiError,
   });
 
-  const [accountId, setAccountId] = useState(wallet.getAccountId() ?? '');
+  const { accountId, signIn, signOut } = useSign({ setApiError });
 
   const chance = lotteryExplanation === '' ? lotteryExplanation : lotteryExplanation.match(/(\d+)/)[0] + '%';
 
@@ -35,7 +30,13 @@ export const Home = () => {
       <DecorationCircleMd />
       <DecorationCircleSm />
 
-      <Navigation accountId={accountId} setAccountId={setAccountId} apiError={apiError} setApiError={setApiError} />
+      <Navigation
+        accountId={accountId}
+        signIn={signIn}
+        signOut={signOut}
+        apiError={apiError}
+        setApiError={setApiError}
+      />
 
       <div className="w-full mt-9 px-5 md:px-9">
         <div className="w-full xl:w-1/2 mx-auto bg-white rounded-md shadow-2xl py-6">
@@ -49,7 +50,7 @@ export const Home = () => {
         <PlayComponent
           accountId={accountId}
           owner={owner}
-          contractId={contractId}
+          signIn={signIn}
           fee={fee}
           has_played={hasPlayed}
           play={play}

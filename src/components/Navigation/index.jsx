@@ -1,25 +1,8 @@
 import React, { useState } from 'react';
-import { wallet } from '../../services/near';
 import { ChangeContract } from './ChangeContract';
-import { useContract } from '../../context/ContractProvider';
 
-export const Navigation = ({ accountId, setAccountId, apiError, setApiError }) => {
-  const { contractId } = useContract();
-
+export const Navigation = ({ accountId, signIn, signOut, apiError, setApiError }) => {
   const [isOpenChangeContact, setIsOpenChangeContact] = useState(false);
-
-  const signIn = () => {
-    try {
-      wallet.requestSignIn(contractId);
-    } catch (error) {
-      setApiError(error);
-    }
-  };
-
-  const signOut = () => {
-    wallet.signOut();
-    setAccountId('');
-  };
 
   return (
     <>
