@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useContract } from '../../../context/ContractProvider';
 
 export const ChangeContract = ({ apiError, setApiError, setIsOpenChangeContact }) => {
@@ -10,6 +10,7 @@ export const ChangeContract = ({ apiError, setApiError, setIsOpenChangeContact }
 
   const handleChange = (e) => {
     setInputContract(e.target.value);
+    setApiError('');
   };
 
   const setDefaultContractId = () => {
@@ -17,12 +18,6 @@ export const ChangeContract = ({ apiError, setApiError, setIsOpenChangeContact }
     setContractId(defaultContractId);
     setInputContract(defaultContractId);
   };
-
-  useEffect(() => {
-    setInputContract(contractId);
-    setApiError('');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contractId]);
 
   return (
     <div className="absolute z-20 w-full top-0 left-0 flex flex-col items-center bg-white shadow-xl pb-10 px-5">
@@ -75,11 +70,21 @@ export const ChangeContract = ({ apiError, setApiError, setIsOpenChangeContact }
 
       <p className="text-2xl font-bold text-gray-900 mt-4">Contract deploy</p>
 
-      {/* prettier-ignore */}
       <p className="text-center mt-3 text-gray-500">
         Please make sure that you put in input field correct contract id and your contract is deployed correctly. This
-        is <a className="text-blue-500" target="_blank" rel="noreferrer" href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery">contract source code</a> with setup instructions.
-        <span className="text-gray-800 font-bold">If  your input is not valid, your will see error message with description of error</span>
+        is{' '}
+        <a
+          className="text-blue-500"
+          target="_blank"
+          rel="noreferrer"
+          href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery"
+        >
+          contract source code
+        </a>{' '}
+        with setup instructions.
+        <span className="text-gray-800 font-bold">
+          If your input is not valid, your will see error message with description of error
+        </span>
       </p>
 
       <p className="text-sm font-semibold text-yellow-400 mt-3">Current ID</p>
@@ -104,7 +109,7 @@ export const ChangeContract = ({ apiError, setApiError, setIsOpenChangeContact }
           />
         </div>
         <div className="w-full flex items-center justify-between mt-4">
-          {inputContract !== contractId ? (
+          {inputContract && inputContract !== contractId ? (
             <button
               onClick={() => setContractId(inputContract)}
               className="mt-5 h-10 p-4 flex items-center justify-center text-sm border-2 border-yellow-400 bg-yellow-400 hover:bg-white hover:text-yellow-400 rounded-md text-gray-800 font-bold transform active:scale-95 duration-200"
