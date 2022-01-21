@@ -8,6 +8,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 import { FooterComponent } from './components/footer/footer.component';
 import { ChangeContractComponent } from './components/navigation/change-contract/change-contract.component';
 import { ChangeContractMobileComponent } from './components/navigation/change-contract-mobile/change-contract-mobile.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ChangeContractMobileComponent } from './components/navigation/change-co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

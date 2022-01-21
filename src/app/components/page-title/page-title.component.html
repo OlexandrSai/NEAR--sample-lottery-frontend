@@ -104,7 +104,8 @@
           the square of the total number of unique players
         </p>
       </div>
-      <div v-if="hasPlayed" class="ml-auto mt-10">
+<!--      v-if="hasPlayed"-->
+      <div *ngIf="true" class="ml-auto mt-10">
         <p class="text-gray-500 flex font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
@@ -118,12 +119,13 @@
     </div>
     <div class="w-full flex justify-center">
       <!--      @click="play"-->
-      <button  v-if="accountId"
-
-               style="box-shadow: 0px 4px 15px rgba(255, 206, 34, 0.75);" class="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300">Play</button>
+      <!-- accountId      -->
+      <button  *ngIf="true; else elseBlock" style="box-shadow: 0 4px 15px rgba(255, 206, 34, 0.75);" class="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300">Play</button>
       <!--      @click="signIn"-->
-      <button  v-else
-               style="box-shadow: 0px 4px 15px rgba(255, 206, 34, 0.75);" class="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300">Play</button>
+      <ng-template #elseBlock>
+        <button style="box-shadow: 0 4px 15px rgba(255, 206, 34, 0.75);" class="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300">Sign In</button>
+      </ng-template>
+
     </div>
   </div>
 </div>
