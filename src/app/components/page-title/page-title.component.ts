@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LotteryService} from "../../services/lottery.service";
 
 @Component({
   selector: 'app-page-title',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageTitleComponent implements OnInit {
 
-  constructor() { }
+  constructor(public lotteryService: LotteryService) { }
 
   ngOnInit(): void {
   }

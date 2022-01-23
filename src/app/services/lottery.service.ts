@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {NearService} from "./near.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LotteryService {
   public FeeStrategies = ['Free', 'Constant', 'Linear', 'Exponential']
-  public owner = "";
+  public owner = '';
   public winner = ''
   public pot = ''
   public fee = ''
@@ -16,10 +17,10 @@ export class LotteryService {
   public active = null;
   public feesExplanation = '';
   public lotteryExplanation = '';
-  public apiError: null|any = null;
+  public apiError: null | any = null;
   public accountId = '';
 
-  constructor(public nearService: NearService) {
+  constructor(public nearService: NearService, private route: ActivatedRoute) {
     this.updateValues();
   }
 
@@ -35,6 +36,10 @@ export class LotteryService {
       this.active = await this.nearService.getActive()
       this.feesExplanation = await this.nearService.getExplainFees()
       this.lotteryExplanation = await this.nearService.getExplainLottery()
+
+      this.route.queryParams.subscribe((params: any) => {
+        this.accountId = params['account_id'] ?? '';
+      });
     } catch (e) {
       this.apiError = e;
       console.log(this.apiError);
