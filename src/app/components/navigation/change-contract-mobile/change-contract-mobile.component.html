@@ -11,11 +11,7 @@
     </svg>
   </button>
 
-  <p class="text-gray-900 font-bold text-sm text-center">Try frontend with your deployed contract ID</p>
-
-  <!-- Current ID -->
-  <!-- <p class="text-sm font-semibold text-yellow-400 leading-3 mt-3">Current ID</p>
-  <p class="text-sm font-bold text-gray-900 leading-3 mt-2">“dev-1635829277525-2258924695353”</p> -->
+<!--  <p class="text-gray-900 font-bold text-sm text-center">Try frontend with your deployed contract ID</p>-->
 
   <!-- Deploy POPUP form -->
   <div *ngIf="isChangeContractIdFormOpened"
@@ -30,8 +26,7 @@
           fill="currentColor"/>
       </svg>
     </a>
-    <!--  v-if="isChangeContractIdFormOpened || apiError"-->
-    <div *ngIf="isChangeContractIdFormOpened">
+    <div *ngIf="isChangeContractIdFormOpened || lotteryService.apiError">
 
       <!-- NEAR Logo -->
       <svg xmlns="http://www.w3.org/2000/svg" class="mt-4 mx-auto" width="151" height="40" viewBox="0 0 151 40"
@@ -77,14 +72,13 @@
 
       <!-- Form -->
       <form action="" class="w-full">
-        <!-- v-if="apiError" -->
-        <div *ngIf="false" class="w-full flex items-center justify-between mt-4">
+        <div *ngIf="lotteryService.apiError" class="w-full flex items-center justify-between mt-4">
           <!--          <p class="text-red-500 text-xs font-bold">{{apiError}}</p>-->
           <p class="text-yellow-400 text-xs font-bold">Check an ID</p>
         </div>
 
         <!-- Normal input -->
-        <input *ngIf="false; else elseBlock" [(ngModel)]="inputContractId" name="inputContractId" type="text"
+        <input *ngIf="lotteryService.apiError; else elseBlock" [(ngModel)]="inputContractId" name="inputContractId" type="text"
                class="mt-4 w-full h-10 border-2 border-red-500 text-red-500 focus:outline-none text-xs py-3 font-semibold"
                placeholder="Set your contract ID">
         <ng-template #elseBlock>

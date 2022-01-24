@@ -13,16 +13,9 @@
 
   <p class="text-gray-900 font-bold text-sm text-center">Try frontend with your deployed contract ID</p>
 
-  <!-- Current ID -->
-  <!-- <div class="flex flex-col items-center">
-      <p class="text-sm font-semibold text-yellow-400 leading-4">Current ID</p>
-      <p class="text-sm font-bold text-gray-900 leading-4">“dev-1635829277525-2258924695353”</p>
-  </div> -->
-
   <!-- POPUP Form -->
-  <!--  v-if="isChangeContractIdFormOpened || apiError"-->
-  <div *ngIf="isChangeContractIdFormOpened"
-       class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 w-screen md:w-500">
+  <div *ngIf="isChangeContractIdFormOpened || lotteryService.apiError"
+       class="absolute top-0 flex flex-col items-center z-10 bg-white rounded-xl shadow-xl pt-16 pb-8 px-5 md:px-20 md:w-500 w-screen">
 
     <!-- NEAR Logo -->
     <svg xmlns="http://www.w3.org/2000/svg" width="151" height="40" viewBox="0 0 151 40" fill="none">
@@ -67,15 +60,13 @@
 
     <!-- Form -->
     <form action="" class="w-full">
-<!--      <div v-if="apiError" class="w-full flex items-center justify-between mt-4">-->
-      <div *ngIf="false" class="w-full flex items-center justify-between mt-4">
+      <div *ngIf="lotteryService.apiError" class="w-full flex items-center justify-between mt-4">
         <!--        <p class="text-red-500 text-xs font-bold">{{apiError}}</p>-->
         <p class="text-yellow-400 text-xs font-bold">Check an ID</p>
       </div>
 
       <!-- Normal input -->
-      <!--      *ngIf="apiError;-->
-      <input *ngIf="false; else elseBlock" [(ngModel)]="inputContractId" name="inputContractId" type="text"
+      <input *ngIf="lotteryService.apiError; else elseBlock" [(ngModel)]="inputContractId" name="inputContractId" type="text"
              class="mt-4 w-full h-10 border-2 border-red-500 text-red-500 focus:outline-none text-xs py-3 font-semibold"
              placeholder="Set your contract ID">
       <ng-template #elseBlock>

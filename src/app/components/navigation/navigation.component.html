@@ -1,8 +1,6 @@
 <!--NAVIGATION-->
 <div class="">
-
-  <!--  <ChangeContractMobile/>-->
-<!--  <app-change-contract-mobile></app-change-contract-mobile>-->
+  <app-change-contract-mobile></app-change-contract-mobile>
 
   <div class="w-full flex justify-between bg-white text-gray-900 px-5 md:px-9">
 
@@ -15,10 +13,9 @@
     </a>
 
     <!-- Place for POPUP button (past here) -->
-        <app-change-contract></app-change-contract>
+    <app-change-contract></app-change-contract>
 
     <div class="">
-<!--      v-if="accountId"-->
       <div *ngIf="lotteryService.accountId; else elseBlock" class="ml-auto hidden md:flex">
         <!-- Account btn -->
         <a href="#" class="flex bg-yellow-400 text-base font-medium rounded-md py-2 px-5 my-5 hover:bg-yellow-300">

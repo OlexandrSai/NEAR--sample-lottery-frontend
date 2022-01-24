@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from "../../../../environments/environment";
+import {LotteryService} from "../../../services/lottery.service";
 
 @Component({
   selector: 'app-change-contract',
@@ -7,12 +8,13 @@ import {environment} from "../../../../environments/environment";
   styleUrls: ['./change-contract.component.scss']
 })
 export class ChangeContractComponent implements OnInit {
+  //TODO: Move to one component with mobile
   public defaultContractId = environment.NG_APP_CONTRACT_ID;
   public contractId = localStorage.getItem('CONTRACT_ID');
   public isChangeContractIdFormOpened = false;
   public inputContractId = localStorage.getItem('CONTRACT_ID');
 
-  constructor() {
+  constructor(public lotteryService: LotteryService) {
     !this.contractId && localStorage.setItem('CONTRACT_ID', this.defaultContractId);
     this.contractId = this.contractId ?? this.defaultContractId;
   }
