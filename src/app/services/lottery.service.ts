@@ -12,7 +12,7 @@ export class LotteryService {
   public pot = ''
   public fee = ''
   public feeStrategy = ''
-  public hasPlayed = null;
+  public hasPlayed: any = null;
   public lastPlayed = null;
   public active = null;
   public feesExplanation = '';
@@ -50,6 +50,11 @@ export class LotteryService {
     this.fee = await this.nearService.getFee()
     this.hasPlayed = await this.nearService.getHasPlayed(this.nearService.wallet.getAccountId())
     await this.nearService.play(this.fee, this.hasPlayed);
+
+    if(!this.hasPlayed) {
+      this.hasPlayed = true;
+      this.fee = await this.nearService.getFee();
+    }
   };
 
   handleReset = async () => {

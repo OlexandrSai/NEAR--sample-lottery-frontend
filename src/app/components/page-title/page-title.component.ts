@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LotteryService} from "../../services/lottery.service";
 
 @Component({
@@ -7,10 +7,13 @@ import {LotteryService} from "../../services/lottery.service";
   styleUrls: ['./page-title.component.scss']
 })
 export class PageTitleComponent implements OnInit {
-
-  constructor(public lotteryService: LotteryService) { }
+  constructor(public lotteryService: LotteryService) {
+  }
 
   ngOnInit(): void {
   }
 
+  async handlePlay(): Promise<any> {
+    await this.lotteryService.handlePlay();
+  }
 }

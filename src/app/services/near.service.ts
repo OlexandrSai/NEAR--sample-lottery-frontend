@@ -81,7 +81,7 @@ export class NearService {
 // --------------------------------------------------------------------------
 
   //function to play lottery
-  play = (fee: any,hasPlayed: any) => {
+  play = async (fee: any,hasPlayed: any) => {
     let response
     let feeNumber = fee.match(/(\d+)/)[0] //* 1000000000000000000000000
     console.log(feeNumber)
@@ -90,7 +90,7 @@ export class NearService {
       const attachedDeposit: string = utils.format.parseNearAmount(feeNumber) ?? "";
       const attachedDepositBN = new BN(attachedDeposit);
 
-      response = this.wallet.account().functionCall({
+      response = await this.wallet.account().functionCall({
         contractId: localStorage.getItem('CONTRACT_ID') ?? "",
         methodName: "play",
         gas: this.gas,
@@ -98,7 +98,7 @@ export class NearService {
         args: {}
       })
     }else{
-      response = this.wallet.account().functionCall({
+      response = await this.wallet.account().functionCall({
         contractId: localStorage.getItem('CONTRACT_ID') ?? "",
         methodName: "play",
         gas: this.gas,
