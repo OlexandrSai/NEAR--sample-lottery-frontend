@@ -54,6 +54,7 @@ export class LotteryService {
     if(!this.hasPlayed) {
       this.hasPlayed = true;
       this.fee = await this.nearService.getFee();
+      this.winner = await this.nearService.getWinner();
     }
   };
 
