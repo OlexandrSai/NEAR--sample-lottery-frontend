@@ -48,6 +48,7 @@ After you deployed  your contract, you need to paste  id in one of deployed dapp
 <a href="https://www.loom.com/share/d66f7ee30a1c409ba5166c7bff14bea7" target="_blank">React</a>
 
 <a href="https://www.loom.com/share/6a669c2de52d45b9a6b915eeaf89d567" target="_blank">Angular</a>
+( <a href="https://www.loom.com/share/699428997dcf41e6bbae579b3bb4b4c1" target="_blank">RUS</a> )
 
 ## Project setup
 In main branch README file is presented setup for Vue.Js, React setup README file is in react branch
