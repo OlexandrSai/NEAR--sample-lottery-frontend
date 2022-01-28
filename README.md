@@ -4,6 +4,7 @@ This repository contains a complete frontend applications to work with
 <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">NCD.L1.sample--lottery smart contract</a> targeting the NEAR platform:
 1. Vue.Js (main branch)
 2. React (react branch)
+3. Angular (angular branch)
 
 The example here is playful. It's a toy involving a lottery.
 The goal of this repository is to make it as easy as possible to get started writing frontend with VueJs and React for AssemblyScript contracts built to work with NEAR Protocol.
