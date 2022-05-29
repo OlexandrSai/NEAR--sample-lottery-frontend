@@ -17,7 +17,7 @@ import {
 } from '../services/near';
 
 const FeeStrategies = ['Free', 'Constant', 'Linear', 'Exponential'];
-const accountId = wallet.getAccountId();
+const accountId = wallet().getAccountId();
 
 export const useLottery = ({ setApiError }) => {
   const { contractId } = useContract();

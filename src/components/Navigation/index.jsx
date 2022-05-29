@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ChangeContract } from './ChangeContract';
+import { signIn, signOut } from '../../services/near';
 
-export const Navigation = ({ accountId, signIn, signOut, apiError, setApiError }) => {
+export const Navigation = ({ accountId, apiError, setApiError }) => {
   const [isOpenChangeContact, setIsOpenChangeContact] = useState(false);
 
   return (

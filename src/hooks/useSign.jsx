@@ -1,15 +1,12 @@
-import { wallet } from '../services/near';
 import { useCallback, useEffect, useState } from 'react';
-import { useContract } from '../context/ContractProvider';
+import { signIn, signOut, wallet } from '../services/near';
 
 export const useSign = ({ setApiError }) => {
-  const { contractId } = useContract();
-
   const [accountId, setAccountId] = useState('');
 
   const getAccountId = useCallback(async () => {
     try {
-      setAccountId(await wallet.getAccountId());
+      setAccountId(await wallet().getAccountId());
     } catch (error) {
       setApiError(error);
     }
@@ -21,14 +18,11 @@ export const useSign = ({ setApiError }) => {
   }, [getAccountId]);
 
   const handleSignIn = () => {
-    wallet.requestSignIn({
-      contractId: contractId,
-      methodNames: [], // add methods names to restrict access
-    });
+    signIn();
   };
 
   const handleSignOut = () => {
-    wallet.signOut();
+    signOut();
     getAccountId();
   };
 
