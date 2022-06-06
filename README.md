@@ -18,57 +18,157 @@ Any content produced by NEAR, or developer resources that NEAR provides, are for
 
 ![image](https://user-images.githubusercontent.com/38455192/145136911-fe10f671-2137-483a-8326-343f857d095a.png)
 
-<a href="https://www.loom.com/share/835719fe8e2e45c4a2970ed435f62a56" target="_blank">Video demo UI walkthrough</a>
+<a href="https://www.loom.com/share/835719fe8e2e45c4a2970ed435f62a56" target="_blank">UI walkthrough</a>
 
 You can use this app with contract id`s which was deployed by creators of this repo,  or you can use it with your own deployed  contractId.
 If you are using not yours contractId some functions of the lottery contract will not work because  they are setted to work  only  if owner called this  functions.
 
 Example of such  function:
-//TODO: REWRITE TO ANG EXAMPLE
 
-![image](https://user-images.githubusercontent.com/38455192/145134082-bb64a93d-cd45-48e3-bd84-b34f366fdbcb.png)
+```
+  // reset lottery
+  reset = () => {
+    let  response =  this.wallet.account().functionCall({
+      contractId: localStorage.getItem('CONTRACT_ID') ?? "",
+      methodName: "reset",
+      args: { accountId:this.CONTRACT_ID }
+    })
+    console.log(response)
+  }
+```
 
 To get possibility to work with the full functionality of the smart contract, you need to paste your contractId inside UI of VueJs deployed dapp or React deployed dapp.
 Before pasting id make sure that you deployed correct smart contract, in other case this code may  not work as expected.
 
-<a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">Link to smart contract repo</a>
+## Project setup
+To deploy sample--lottery to your account visit <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">this repo (smart contract deployment instructions are inside)</a>
 
-<a href="https://www.loom.com/share/1060f789861a4652bfef96ef357cdbb3" target="_blank">How to correctly deploy NCD.L1.sample--lottery smart contract (video tutorial)</a>
+Also you can watch this video :
 
-After you deployed  your contract, you need to paste  id in one of deployed dapps
+<a href="https://www.loom.com/share/1060f789861a4652bfef96ef357cdbb3" target="_blank">![image](https://user-images.githubusercontent.com/38455192/169353150-81bf6d02-1a9e-428b-88eb-23f3c2c14328.png)</a>
 
-<a href="https://sample-lottery.onrender.com/" target="_blank">Try VueJs deployed app</a>
-
-<a href="https://sample-lottery-react.onrender.com/" target="_blank">Try React deployed app</a>
+After you deployed  your contract, and you have contract ids, you can input them on a deployed website or you can clone the repo and put contract ids inside src/environments/environment.ts file :
+```
+CONTRACT_ID = "put your thanks contract id here"
+...
+```
 
 <a href="https://sample-lottery-ng.onrender.com/" target="_blank">Try Angular deployed app</a>
 
-### Code walkthrough for NCD students:
-<a href="https://www.loom.com/share/a05799e6d7cf4ab789520e9ca8d28b0a" target="_blank">Vue.Js</a>
-
-<a href="https://www.loom.com/share/d66f7ee30a1c409ba5166c7bff14bea7" target="_blank">React</a>
-
-<a href="https://www.loom.com/share/6a669c2de52d45b9a6b915eeaf89d567" target="_blank">Angular</a>
-( <a href="https://www.loom.com/share/699428997dcf41e6bbae579b3bb4b4c1" target="_blank">RU</a> | 
- <a href="https://www.loom.com/share/811e4f65936c42e4a81db1df89af7c22" target="_blank">PL</a> ) 
-
-## Project setup
-In main branch README file is presented setup for Vue.Js, React setup README file is in react branch, Angular in angular branch
+After you input your values inside environment.ts file, you need to :
+1. Install all dependencies
 ```
-npm i -g @angular/cli
-npm install
+npm i -g @angular/cli && npm i
+```
+2. Run the project locally
+```
+npm run serve
 ```
 
-### Compiles and hot-reloads for development
+Other commands:
+
+Compiles and minifies for production
 ```
-ng serve
+npm run build
+```
+Lints and fixes files
+```
+npm run lint
 ```
 
-### Compiles and minifies for production
+## 👀 Code walkthrough for Near university students
+
+<a href="https://www.loom.com/share/6a669c2de52d45b9a6b915eeaf89d567" >Code walk-through video | TBA |</a>
+
+### -- Contract --
+
+To work with lottery contract were separated inside ``` src/app/services/near.service.ts```.
 ```
-ng build
+  getLotteryContract = () => {
+    return new Contract(
+      this.wallet.account(), // the account object that is connecting
+      environment.CONTRACT_ID, // name of contract you're connecting to
+      {
+        viewMethods: ['get_owner', 'get_winner', 'get_pot', 'get_fee', 'get_fee_strategy', 'get_has_played', 'get_last_played', 'get_active', 'explain_fees', 'explain_lottery'], // view methods do not change state but usually return a value
+        changeMethods: ['play', 'configure_lottery', 'configure_fee', 'reset'] // change methods modify state
+      }
+    )
+  }
 ```
 
-### Further help
+### -- Main Service --
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+We are using ```near-api-js``` to work with NEAR blockchain. In ``` src/app/services/near.service.ts ``` we are importing classes, functions and configs which we are going to use:
+```
+import { keyStores, Near, Contract, utils, WalletConnection } from "near-api-js";
+```
+
+Class contains two variables
+```
+public near: Near;
+public wallet: WalletConnection;
+```
+
+Then in ``` constructor() ``` we are connecting to NEAR:
+```
+this.near = new Near({
+    networkId: process.env.VUE_APP_networkId,
+    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+    nodeUrl: process.env.VUE_APP_nodeUrl,
+    walletUrl: process.env.VUE_APP_walletUrl,
+});
+
+``` 
+and creating wallet connection
+```
+this.wallet = new WalletConnection(this.near, "sample--Thanks--dapp");
+```
+
+that class contain 
+
+### -- Lottery Service --
+
+``` src/app/services/lottery.service.ts ``` represent the main container for functionality needed in the app
+
+We use that class to store all shared data and function's:
+```
+  public FeeStrategies = ['Free', 'Constant', 'Linear', 'Exponential']
+  public owner = '';
+  ...
+  
+  updateValues = async () => {...};
+  handlePlay = async () => {...};
+  handleReset = async () => async () => {...};
+  handleSignIn = async () => {...};
+```
+
+And inside components we are using the same ``` this.wallet``` and ``` this.[...contracts]``` functions to manage state of dapp. ``` src/app/components/page-title/page-title.component.spec.ts ``` as an example :
+```
+  constructor(public lotteryService: LotteryService) {
+  }
+
+  async handlePlay(): Promise<any> {
+    await this.lotteryService.handlePlay();
+  }
+```
+
+## Examples
+``` src/app/services/near.service.ts ```
+### - Function | No Parameters -
+```
+// get winner  of the  contract,  if  exists
+getWinner = async () => {
+  return await this.lotteryContract.get_winner();
+};
+```
+
+### - Function | With Parameters -
+```
+  // configure Fee
+  configureFee = async ({strategy}: {strategy: any}) => {
+    return await this.lotteryContract.configure_fee(
+      { strategy }
+    )
+  }
+```
+
