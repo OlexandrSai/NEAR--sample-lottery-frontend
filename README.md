@@ -111,17 +111,17 @@ public wallet: WalletConnection;
 
 Then in ``` constructor() ``` we are connecting to NEAR:
 ```
-this.near = new Near({
-    networkId: process.env.VUE_APP_networkId,
-    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-    nodeUrl: process.env.VUE_APP_nodeUrl,
-    walletUrl: process.env.VUE_APP_walletUrl,
-});
-
+    this.near = new Near({
+      networkId: "testnet",
+      keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+      nodeUrl: environment.NODE_URL,
+      walletUrl: environment.WALLET_URL,
+      headers: {}
+    });
 ``` 
 and creating wallet connection
 ```
-this.wallet = new WalletConnection(this.near, "sample--Thanks--dapp");
+this.wallet = new WalletConnection(this.near, "lottery");
 ```
 
 that class contain 
@@ -164,11 +164,11 @@ getWinner = async () => {
 
 ### - Function | With Parameters -
 ```
-  // configure Fee
-  configureFee = async ({strategy}: {strategy: any}) => {
-    return await this.lotteryContract.configure_fee(
-      { strategy }
-    )
-  }
+// configure Fee
+configureFee = async ({strategy}: {strategy: any}) => {
+  return await this.lotteryContract.configure_fee(
+    { strategy }
+  )
+}
 ```
 
