@@ -17,7 +17,7 @@ export class NearService {
   constructor() {
     // connecting to NEAR
     this.near = new Near({
-      networkId: "testnet",
+      networkId: environment.NETWORK_ID,
       keyStore: new keyStores.BrowserLocalStorageKeyStore(),
       nodeUrl: environment.NODE_URL,
       walletUrl: environment.WALLET_URL,
@@ -31,7 +31,7 @@ export class NearService {
     this.lotteryContract = this.getLotteryContract();
   }
 
-  getLotteryContract = () => {
+  getLotteryContract() {
     return new Contract(
       this.wallet.account(), // the account object that is connecting
       environment.CONTRACT_ID, // name of contract you're connecting to
@@ -47,55 +47,54 @@ export class NearService {
   // --------------------------------------------------------------------------
 
   // get owner  of the  contract
-  getOwner = async () => {
+  async getOwner() {
     return await this.lotteryContract.get_owner();
   };
 
   // get winner  of the  contract,  if  exists
-  getWinner = async () => {
+  async getWinner() {
     return await this.lotteryContract.get_winner();
   };
 
   // get current amount  of  pot  (in  NEAR)
-  getPot = async () => {
+  async getPot() {
     return await this.lotteryContract.get_pot();
-
   };
 
   // get current amount  of  fee  (in  NEAR)
-  getFee = async () => {
+  async getFee() {
     return await this.lotteryContract.get_fee();
   };
 
   // get current strategy  of  fee
-  getFeeStrategy = async () => {
+  async getFeeStrategy() {
     return await this.lotteryContract.get_fee_strategy();
   };
 
   // get bool value  has  lottery played or  no by  player
-  getHasPlayed = async ( accountId: any ) => {
+  async getHasPlayed( accountId: any ) {
     return await this.lotteryContract.get_has_played(
       {player: accountId}
     );
   };
 
   // get id of last player account
-  getLastPlayed = async () => {
+  async getLastPlayed() {
     return await this.lotteryContract.get_last_played();
   };
 
   // get flag  is lottery active  or no
-  getActive = async () => {
+  async getActive() {
     return await this.lotteryContract.get_active();
   };
 
   // get string  explanation of current fees
-  getExplainFees = async () => {
+  async getExplainFees() {
     return await this.lotteryContract.explain_fees();
   };
 
   // get string  explanation of current lottery  info
-  getExplainLottery = async () => {
+  async getExplainLottery() {
     return await this.lotteryContract.explain_lottery();
   };
 
@@ -104,7 +103,7 @@ export class NearService {
   // --------------------------------------------------------------------------
 
   // play lottery
-  play = async (fee: any,hasPlayed: any) => {
+  async play(fee: any,hasPlayed: any) {
     let response;
     let feeNumber = fee.match(/(\d+)/)[0];
 
@@ -126,21 +125,21 @@ export class NearService {
   }
 
   // configure Lottery
-  configureLottery = async ({chance}: {chance: any}) => {
+  async configureLottery({chance}: {chance: any}) {
     return await this.lotteryContract.configure_lottery(
       { chance }
     )
   }
 
   // configure Fee
-  configureFee = async ({strategy}: {strategy: any}) => {
+  async configureFee({strategy}: {strategy: any}) {
     return await this.lotteryContract.configure_fee(
       { strategy }
     )
   }
 
   // reset  lottery
-  reset = async () => {
+  async reset() {
     let  response = await this.lotteryContract.reset(
       { accountId: this.CONTRACT_ID }
     );

@@ -23,19 +23,9 @@ Any content produced by NEAR, or developer resources that NEAR provides, are for
 You can use this app with contract id`s which was deployed by creators of this repo,  or you can use it with your own deployed  contractId.
 If you are using not yours contractId some functions of the lottery contract will not work because  they are setted to work  only  if owner called this  functions.
 
-Example of such  function:
+<a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery/blob/680f2bda0c121ad0276513e985ca13ca55dbe5ec/src/lottery/assembly/index.ts#L122" target="_blank">Example of such  function:</a>
 
-```
-  // reset lottery
-  reset = () => {
-    let  response =  this.wallet.account().functionCall({
-      contractId: localStorage.getItem('CONTRACT_ID') ?? "",
-      methodName: "reset",
-      args: { accountId:this.CONTRACT_ID }
-    })
-    console.log(response)
-  }
-```
+![image](https://user-images.githubusercontent.com/38455192/145134082-bb64a93d-cd45-48e3-bd84-b34f366fdbcb.png)
 
 To get possibility to work with the full functionality of the smart contract, you need to paste your contractId inside UI of VueJs deployed dapp or React deployed dapp.
 Before pasting id make sure that you deployed correct smart contract, in other case this code may  not work as expected.
@@ -53,14 +43,17 @@ CONTRACT_ID = "put your thanks contract id here"
 ...
 ```
 
-<a href="https://sample-lottery-ng.onrender.com/" target="_blank">Try Angular deployed app</a>
-
 After you input your values inside environment.ts file, you need to :
-1. Install all dependencies
+1. Install Angular CLI (if previously you didn't)
 ```
-npm i -g @angular/cli && npm i
+npm i -g @angular/cli
 ```
-2. Run the project locally
+
+2. Install all dependencies
+```
+npm i
+```
+3. Run the project locally
 ```
 npm run serve
 ```
@@ -84,7 +77,7 @@ npm run lint
 
 To work with lottery contract were separated inside ``` src/app/services/near.service.ts```.
 ```
-  getLotteryContract = () => {
+  getLotteryContract() {
     return new Contract(
       this.wallet.account(), // the account object that is connecting
       environment.CONTRACT_ID, // name of contract you're connecting to
@@ -112,7 +105,7 @@ public wallet: WalletConnection;
 Then in ``` constructor() ``` we are connecting to NEAR:
 ```
     this.near = new Near({
-      networkId: "testnet",
+      networkId: environment.NETWORK_ID,
       keyStore: new keyStores.BrowserLocalStorageKeyStore(),
       nodeUrl: environment.NODE_URL,
       walletUrl: environment.WALLET_URL,
@@ -136,18 +129,18 @@ We use that class to store all shared data and function's:
   public owner = '';
   ...
   
-  updateValues = async () => {...};
-  handlePlay = async () => {...};
-  handleReset = async () => async () => {...};
-  handleSignIn = async () => {...};
+  updateValues() {...};
+  handlePlay() {...};
+  handleReset() {...};
+  handleSignIn() {...};
 ```
 
-And inside components we are using the same ``` this.wallet``` and ``` this.[...contracts]``` functions to manage state of dapp. ``` src/app/components/page-title/page-title.component.spec.ts ``` as an example :
+With dependency injection we are able to share everything with other components. ``` src/app/components/page-title/page-title.component.spec.ts ``` as an example :
 ```
   constructor(public lotteryService: LotteryService) {
   }
 
-  async handlePlay(): Promise<any> {
+  async handlePlay() {
     await this.lotteryService.handlePlay();
   }
 ```
@@ -157,7 +150,7 @@ And inside components we are using the same ``` this.wallet``` and ``` this.[...
 ### - Function | No Parameters -
 ```
 // get winner  of the  contract,  if  exists
-getWinner = async () => {
+getWinner() {
   return await this.lotteryContract.get_winner();
 };
 ```
@@ -165,7 +158,7 @@ getWinner = async () => {
 ### - Function | With Parameters -
 ```
 // configure Fee
-configureFee = async ({strategy}: {strategy: any}) => {
+configureFee({strategy}: {strategy: any}) {
   return await this.lotteryContract.configure_fee(
     { strategy }
   )

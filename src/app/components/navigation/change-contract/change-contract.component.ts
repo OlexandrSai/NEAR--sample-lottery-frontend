@@ -19,13 +19,13 @@ export class ChangeContractComponent {
     this.contractId = this.contractId ?? this.defaultContractId;
   }
 
-  handleSetContractId = (Id: any) => {
+  handleSetContractId(Id: any) {
     localStorage.setItem('CONTRACT_ID', Id);
     this.contractId = localStorage.getItem('CONTRACT_ID');
     location.reload()
   };
 
-  handleSetDefaultContractId = () => {
+  handleSetDefaultContractId() {
     localStorage.setItem('CONTRACT_ID', this.defaultContractId);
     this.contractId = localStorage.getItem('CONTRACT_ID');
     this.inputContractId = localStorage.getItem('CONTRACT_ID');

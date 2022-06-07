@@ -10,7 +10,7 @@ export class PageTitleComponent {
   constructor(public lotteryService: LotteryService) {
   }
 
-  async handlePlay(): Promise<any> {
+  async handlePlay() {
     await this.lotteryService.handlePlay();
   }
 }

@@ -24,7 +24,7 @@ export class LotteryService {
     this.updateValues();
   }
 
-  updateValues = async () => {
+  async updateValues() {
     try {
       this.owner = await this.nearService.getOwner();
       this.winner = await this.nearService.getWinner();
@@ -47,7 +47,7 @@ export class LotteryService {
     }
   }
 
-  handlePlay = async () => {
+  async handlePlay() {
     this.fee = await this.nearService.getFee();
     this.hasPlayed = await this.nearService.getHasPlayed(this.nearService.wallet.getAccountId());
     await this.nearService.play(this.fee, this.hasPlayed);
@@ -59,18 +59,18 @@ export class LotteryService {
     }
   };
 
-  handleReset = async () => {
+  async handleReset() {
     await this.nearService.reset();
   };
 
-  handleSignIn = () => {
+  handleSignIn() {
     this.nearService.wallet.requestSignIn({
       contractId: this.nearService.CONTRACT_ID,
       methodNames: [] // add methods names to restrict access
     });
   };
 
-  handleSignOut = () => {
+  handleSignOut() {
     this.nearService.wallet.signOut();
     this.accountId = this.nearService.wallet.getAccountId();
   };
