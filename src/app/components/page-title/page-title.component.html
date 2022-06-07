@@ -33,7 +33,7 @@
         </svg>
         <p class="ml-3">Chance of victory</p>
         <p
-          class="ml-auto">{{lotteryService.lotteryExplanation == '' ? lotteryService.lotteryExplanation : lotteryService.lotteryExplanation.split(' ')![3]! }}</p>
+          class="ml-auto">{{lotteryService.lotteryExplanation === '' ? lotteryService.lotteryExplanation : lotteryService.lotteryExplanation.split(' ')![3]! }}</p>
       </div>
       <!-- <div class="flex w-full mx-3 my-3 pb-2 py-2 border-b font-medium">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +63,7 @@
         </svg>
         <p class="ml-3">Winner</p>
         <p class="ml-auto">
-          {{lotteryService.winner == null ? 'No winner yet' : lotteryService.winner}}
+          {{lotteryService.winner === null ? 'No winner yet' : lotteryService.winner}}
         </p>
       </div>
     </div>

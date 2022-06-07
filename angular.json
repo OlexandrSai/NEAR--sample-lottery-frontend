@@ -103,9 +103,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "NCD.L2.sample--lottery"
+  "defaultProject": "NCD.L2.sample--lottery",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

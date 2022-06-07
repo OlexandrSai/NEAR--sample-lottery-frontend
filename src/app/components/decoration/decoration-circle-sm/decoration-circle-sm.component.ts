@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-decoration-circle-sm',
   templateUrl: './decoration-circle-sm.component.html',
   styleUrls: ['./decoration-circle-sm.component.scss']
 })
-export class DecorationCircleSmComponent implements OnInit {
-
+export class DecorationCircleSmComponent {
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
