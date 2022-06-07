@@ -75,7 +75,7 @@ npm run lint
 
 ### -- Contract --
 
-To work with lottery contract were separated inside ``` src/app/services/near.service.ts```.
+To work with lottery contract was separated inside ``` src/app/services/near.service.ts```.
 ```
   getLotteryContract() {
     return new Contract(
