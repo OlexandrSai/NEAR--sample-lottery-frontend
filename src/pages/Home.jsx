@@ -30,13 +30,7 @@ export const Home = () => {
       <DecorationCircleMd />
       <DecorationCircleSm />
 
-      <Navigation
-        accountId={accountId}
-        signIn={signIn}
-        signOut={signOut}
-        apiError={apiError}
-        setApiError={setApiError}
-      />
+      <Navigation accountId={accountId} signOut={signOut} apiError={apiError} setApiError={setApiError} />
 
       <div className="w-full mt-9 px-5 md:px-9">
         <div className="w-full xl:w-1/2 mx-auto bg-white rounded-md shadow-2xl py-6">
