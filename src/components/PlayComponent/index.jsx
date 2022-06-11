@@ -59,15 +59,16 @@ export const PlayComponent = ({ accountId, owner, fee, signIn, has_played, play,
           Play
         </button>
       </div>
-      {accountId && owner === accountId ? (
+      {/* call "reset" script from terminal */}
+      {accountId && owner === accountId && reset ? (
         <div className="w-full flex justify-center">
-          <button
+          {/* <button
             onClick={reset}
             style={{ boxShadow: '0px 4px 15px rgba(255, 206, 34, 0.75)' }}
             className="bg-yellow-400 py-3 w-full md:w-1/2 rounded-md mt-10 font-medium shadow-2xl text-gray-900 hover:bg-yellow-300"
           >
             Reset
-          </button>
+          </button> */}
         </div>
       ) : null}
     </div>
