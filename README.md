@@ -1,5 +1,5 @@
-#  🎓 Lottery dapp
-This repository contains a complete frontend applications to work with
+#  🎓 Lottery dApp
+This repository contains a complete frontend application to work with
 
 <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">NCD.L1.sample--lottery smart contract</a> targeting the NEAR platform:
 1. Vue.Js (main branch)
@@ -9,10 +9,8 @@ This repository contains a complete frontend applications to work with
 The example here is playful. It's a toy involving a lottery.
 The goal of this repository is to make it as easy as possible to get started writing frontend with VueJs and React for AssemblyScript contracts built to work with NEAR Protocol.
 
-
 ## ⚠️ Warning
-Any content produced by NEAR, or developer resources that NEAR provides, are for educational and inspiration purposes only. NEAR does not encourage, induce or sanction the deployment of any such applications in violation of applicable laws or regulations.
-
+Any content produced by NEAR, or developer resources that NEAR provides, are for educational and inspirational purposes only. NEAR does not encourage, induce or sanction the deployment of any such applications in violation of applicable laws or regulations.
 
 ## Usage
 
@@ -20,15 +18,15 @@ Any content produced by NEAR, or developer resources that NEAR provides, are for
 
 <a href="https://www.loom.com/share/835719fe8e2e45c4a2970ed435f62a56" target="_blank">UI walkthrough</a>
 
-You can use this app with contract id`s which was deployed by creators of this repo,  or you can use it with your own deployed  contractId.
-If you are using not yours contractId some functions of the lottery contract will not work because  they are setted to work  only  if owner called this  functions.
+You can use this app with contract IDs that were deployed by the creators of this repo,  or you can use it with your own deployed contractId.
+If you are using not your contractId some functions of the lottery contract will not work because they are set to work only if the owner called these functions.
 
 <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery/blob/680f2bda0c121ad0276513e985ca13ca55dbe5ec/src/lottery/assembly/index.ts#L122" target="_blank">Example of such  function:</a>
 
 ![image](https://user-images.githubusercontent.com/38455192/145134082-bb64a93d-cd45-48e3-bd84-b34f366fdbcb.png)
 
-To get possibility to work with the full functionality of the smart contract, you need to paste your contractId inside UI of VueJs deployed dapp or React deployed dapp.
-Before pasting id make sure that you deployed correct smart contract, in other case this code may  not work as expected.
+To get the possibility to work with the full functionality of the smart contract, you need to paste your contractId inside the UI of deployed dApp.
+Before pasting id make sure that you deployed the correct smart contract, in other cases this code may not work as expected.
 
 ## Project setup
 To deploy sample--lottery to your account visit <a href="https://github.com/Learn-NEAR/NCD.L1.sample--lottery" target="_blank">this repo (smart contract deployment instructions are inside)</a>
@@ -96,7 +94,7 @@ We are using ```near-api-js``` to work with NEAR blockchain. In ``` src/app/serv
 import { keyStores, Near, Contract, utils, WalletConnection } from "near-api-js";
 ```
 
-Class contains two variables
+The class contains two variables
 ```
 public near: Near;
 public wallet: WalletConnection;
@@ -117,13 +115,13 @@ and creating wallet connection
 this.wallet = new WalletConnection(this.near, "lottery");
 ```
 
-that class contain 
+that class contain
 
 ### -- Lottery Service --
 
-``` src/app/services/lottery.service.ts ``` represent the main container for functionality needed in the app
+``` src/app/services/lottery.service.ts ``` represents the main container for the functionality needed in the app
 
-We use that class to store all shared data and function's:
+We use that class to store all shared data and functions:
 ```
   public FeeStrategies = ['Free', 'Constant', 'Linear', 'Exponential']
   public owner = '';
@@ -135,7 +133,7 @@ We use that class to store all shared data and function's:
   handleSignIn() {...};
 ```
 
-With dependency injection we are able to share everything with other components. ``` src/app/components/page-title/page-title.component.spec.ts ``` as an example :
+With dependency injection, we are able to share everything with other components. ``` src/app/components/page-title/page-title.component.spec.ts ``` as an example :
 ```
   constructor(public lotteryService: LotteryService) {
   }
@@ -149,7 +147,7 @@ With dependency injection we are able to share everything with other components.
 ``` src/app/services/near.service.ts ```
 ### - Function | No Parameters -
 ```
-// get winner  of the  contract,  if  exists
+// get winner of the contract, if exists
 getWinner() {
   return await this.lotteryContract.get_winner();
 };
